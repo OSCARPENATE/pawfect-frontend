@@ -1,0 +1,2138 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --Color_texto_principal: rgb(156, 163, 255);
+    --Color_grisapagado: #7B7F82;
+    --Color_grisoscuro: #3D3F40;
+    --Color_oscuro: #20202D;
+    --Color_texto_segundo: rgb(100, 108, 232);
+    --Color_texto_tercero: rgb(70, 77, 184);
+    --Caja_sombra-principal: 0px 6px 50px -20px rgba(0, 0, 0, 0.7);
+    --Caja_sombra-secundaria: 0px 6px 50px -20px rgba(0, 0, 0, 0.5);
+    --Font_size: 16px;
+    --Texto_pequeño_size: 40px;
+    --Texto_carta_size: 24px;
+    --Texto2_carta_size: 20px;
+    --Texto_parrafo: 25px;
+}
+
+body {
+    background-color: var(--Color_oscuro);
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    /* Asegura que esté en la parte superior */
+    z-index: 9998;
+    background-color: var(--Color_texto_principal);
+    box-shadow: var(--Caja_sombra-secundaria);
+    
+}
+
+.Contenedor_header {
+    width: 100%;
+    /* Asegura que el contenedor ocupe el ancho completo */
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* Correcto uso de justify-content */
+    align-items: center;
+}
+
+/* Asegúrate de que el logo, el menú y los botones de redes sociales ocupen espacios proporcionales */
+.Logo,
+.Menu,
+.SocialMedia {
+    flex: 1;
+    /* Da a cada sección un flex-grow para distribuir el espacio */
+}
+
+.Logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    transition: 0.5s;
+}
+
+.Logo img {
+    width: 180px;
+    transition: 0.5s;
+}
+
+.Menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
+}
+
+.Menu nav {
+    margin: 0px 0px;
+}
+
+.Menu nav ul {
+    display: flex;
+}
+
+.Menu nav ul li {
+    list-style: none;
+    margin: 0px 16px;
+    color: aliceblue;
+}
+
+.Menu nav ul li a {
+    font-size: var(--Font_size);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+}
+
+.Menu nav ul li a:after {
+    content: "";
+    position: absolute;
+    background-color: aliceblue;
+    height: 3px;
+    width: 0px;
+    left: 0px;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+.Menu nav ul li a:hover {
+    color: aliceblue;
+}
+
+.Menu nav ul li a:hover:after {
+    width: 110%;
+    left: -5%;
+}
+
+.Boton_principal {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    padding: 8px 40px;
+    color: aliceblue;
+    /* Color del texto inicial */
+    border: 2px solid aliceblue;
+    border-radius: 8px;
+    font-weight: 500;
+    margin: 0px 20px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.3s;
+    /* Transición suave para el color del texto */
+    transition: 0.5s;
+}
+
+.Boton_principal span {
+    position: relative;
+    z-index: 1;
+    /* Asegura que el texto esté por encima del pseudo-elemento */
+}
+
+.Boton_principal::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: aliceblue;
+    /* Color de fondo inicial */
+    transition: width 0.5s, height 0.5s;
+    opacity: 0;
+    /* Opacidad inicial */
+    z-index: 0;
+    /* Asegura que el pseudo-elemento esté detrás del texto */
+}
+
+.Boton_principal:hover::before {
+    width: 200px;
+    /* Tamaño del efecto de expansión */
+    height: 200px;
+    /* Tamaño del efecto de expansión */
+    opacity: 1;
+    /* Aumenta la opacidad al interactuar */
+}
+
+.Boton_principal:hover {
+    color: var(--Color_texto_principal);
+    /* Cambia el color del texto al pasar el mouse */
+}
+
+.Menu .SocialMedia {
+    display: flex;
+    /* Asegura que los iconos se alineen horizontalmente */
+    margin-left: 20px;
+    /* Ajuste opcional para separación con otros elementos */
+    justify-content: flex-end;
+    transition: 0.5s;
+}
+
+.Menu .SocialMedia a {
+    margin: 0px 10px;
+    height: 30px;
+    width: 100%;
+}
+
+.Menu .SocialMedia a img {
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 25px; /* Ajusta el tamaño del ícono de hamburguesa */
+    color: var(--Color_oscuro);
+}
+
+/* Media Queries para pantallas menores a 1250px */
+@media (max-width: 1250px) {
+    .Contenedor_header {
+        padding: 0 20px; /* Ajuste opcional para el contenedor */
+    }
+
+    .Logo img {
+        margin-right: 20px; /* Reduce el margen derecho del logo */
+    }
+
+    .Menu .SocialMedia a {
+        margin: 0 5px; /* Reduce el margen entre iconos de redes sociales */
+    }
+
+    .Menu nav ul li {
+        margin: 0 10px; /* Reduce el margen entre las opciones del menú */
+    }
+
+    .Boton_principal {
+        padding: 6px 25px;
+        font-size: 16px;
+        margin: 5px; /* Reduce el margen entre los botones de login y cotizar */
+    }
+}
+
+/* Media Queries para pantallas menores a 1000px */
+@media (max-width: 1000px) {
+    header {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    /* El logo se centra en la pantalla */
+    .Contenedor_header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    /* Centra el logo y ajusta su tamaño */
+    .Logo {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .Logo img {
+        margin: 20px;
+        width: 160px; /* Reduce el tamaño del logo */
+    }
+    
+    .Menu .SocialMedia {
+        display: flex;
+        /* Asegura que los iconos se alineen horizontalmente */
+        margin-left: 10px;
+        /* Ajuste opcional para separación con otros elementos */
+        justify-content: flex-end;
+    }
+    
+    .Menu .SocialMedia a {
+        margin: 0px 7px;
+        height: 25px;
+        width: 100%;
+    }
+    
+    .Menu .SocialMedia a img {
+        width: 25px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 800px) {
+
+    header {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    /* El logo se centra en la pantalla */
+    .Contenedor_header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    /* Centra el logo y ajusta su tamaño */
+    .Logo {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .Logo img {
+        margin: 20px;
+        width: 150px; /* Reduce el tamaño del logo */
+    }
+    
+    .Menu .SocialMedia {
+        display: flex;
+        /* Asegura que los iconos se alineen horizontalmente */
+        margin-left: 10px;
+        /* Ajuste opcional para separación con otros elementos */
+        justify-content: flex-end;
+    }
+    
+    .Menu .SocialMedia a {
+        margin: 0px 7px;
+        height: 25px;
+        width: 100%;
+    }
+    
+    .Menu .SocialMedia a img {
+        width: 25px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ajusta el tamaño de los botones de cotizar y login */
+    .Boton_principal {
+        padding: 6px 20px;
+        font-size: 14px;
+        margin: 10px 10px;
+    }
+
+    /* Muestra el botón de hamburguesa */
+    .menu-toggle {
+        color: aliceblue;
+        display: flex;
+        margin-left: 20px;
+    }
+
+    /* Ajusta la visibilidad del menú hamburguesa */
+    .Menu nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 172px;
+        right: 0;
+        backdrop-filter: blur(10px);
+        background-color: rgb(70, 77, 184, 0.5);
+        width: 45%;
+        z-index: 1;
+        transition: 0.5s, opacity 0.3s ease;
+        box-shadow: var(--Caja_sombra-principal);
+        max-height: 0; /* Oculta el menú inicialmente */
+        opacity: 0; /* Opacidad inicial */
+        overflow: hidden; /* Oculta el contenido desbordante */
+    }
+
+    .Menu nav ul li a {
+        color: aliceblue;
+    }
+    
+    .Menu nav ul li a:after {
+        background-color: aliceblue;
+    }
+    
+    .Menu nav ul li a:hover {
+        color: aliceblue;
+    }
+
+    .Menu nav ul.active {
+        display: flex;
+        max-height: 300px; /* Ajusta según la altura máxima que esperas */
+        opacity: 1; /* Opacidad al mostrar */
+    }
+
+    .Menu nav ul li {
+        margin: 20px 0;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Estilo para la ventana para informacion de la publicacion */
+.Ventana_sin_sesion {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(32, 32, 45, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 9997;
+}
+
+/* Modal principal */
+.Modal_sin_sesion {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;  /* Centra el contenido horizontalmente */
+    align-items: center;      /* Centra verticalmente */
+    background-color: aliceblue;
+    border-radius: 10px;
+    overflow: visible;
+    width: 70%;
+    padding: 25px;
+    height: auto;
+    transform: scale(0.9);
+    opacity: 1;
+    transition: all 0.4s ease;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+/* Clases para hacer visibles */
+.Ventana_sin_sesion.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.Ventana_sin_sesion.visible .Modal_sin_sesion {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.Modal_sin_sesion h2 {
+    font-size: 50px;
+    margin-bottom: 17px;
+    color: var(--Color_oscuro);
+    transition: 0.5s;
+    text-align: start;
+    font-family: "DM Serif Display", serif;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.Boton_redireccion_ingreso {
+    display: inline-block; /* Para que los botones se alineen en línea */
+    text-align: center;
+    width: 150px;
+    padding: 10px 20px;
+    background: transparent;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--Color_oscuro);
+    border: 2px solid var(--Color_oscuro);
+}
+
+.Boton_redireccion_ingreso:hover {
+    color: white;
+    background-color: var(--Color_oscuro);
+    border: 2px solid var(--Color_oscuro);
+    transition: 0.5s;
+}
+
+/*Perfil usuario*/
+.Contenedor_perfil-usuario,
+.Perfil_usuario-body {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Perfil_usuario {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background: white;
+    padding-bottom: 1.25rem;
+}
+
+.Perfil_usuario-portada {
+    display: block;
+    position: relative;
+    width: 80%;
+    background: #FF9CBA;
+    border-radius: 0 0 20px 20px;
+    margin-top: 100px; /* Ajusta el margen superior para evitar el header */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover; /* Asegura que la imagen cubra todo el contenedor */
+    min-height: 288px; /* Altura mínima por defecto */
+    max-height: 500px; /* Altura máxima permitida */
+}
+
+.Boton_portada {
+    display: flex;
+    position: absolute;
+    top: 18px;
+    right: 1rem;
+    padding: 12px 25px;
+    align-items: center;
+    backdrop-filter: blur(2px);
+    background-color: rgba(240, 248, 255, 0.3);
+    color: aliceblue;
+    border-radius: 25px;
+    border: 2px solid aliceblue;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.Boton_portada:hover {
+    transform: translateY(-5px);
+    border: 2px solid aliceblue;
+}
+
+.Boton_portada:active {
+    transform: translateY(0);
+}
+
+.Boton_reset-portada {
+    position: absolute;
+    top: calc(100% - 60px);
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+    backdrop-filter: blur(2px);
+    background-color: rgba(240, 248, 255, 0.3);
+    color: aliceblue;
+    border-radius: 50%;
+    border: 2px solid aliceblue;
+    transition: transform 0.5s ease;
+    cursor: pointer;
+}
+
+.Boton_reset-portada:hover {
+    transform: translateY(-5px);
+    border: 2px solid aliceblue;
+}
+
+.Boton_reset-portada:active {
+    transform: translateY(0);
+}
+
+.Boton_reset-portada i {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+.Perfil_usuario-avatar {
+    display: flex;
+    width: 180px;
+    height: 180px;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--Color_oscuro);
+    background-color: white;
+    border-radius: 50%;
+    box-shadow: var(--Caja_sombra-secundaria);
+    position: absolute;
+    bottom: -80px;
+    left: 50%;  /* Posiciona el avatar en el centro horizontal */
+    transform: translateX(-50%);  /* Mueve el avatar hacia la izquierda para centrarlo */
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.Perfil_usuario-avatar img {
+    width: 100%;
+    position: relative;
+    border-radius: 50%;
+}
+
+.Boton_cargar-avatar {
+    position: absolute;
+    left: -2px;
+    top: -2px;
+    background-color: white;
+    box-shadow: var(--Caja_sombra-principal);
+    width: 45px;
+    height: 45px;
+    border: 2px solid var(--Color_oscuro);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.Boton_cargar-avatar i {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    color: var(--Color_oscuro);
+}
+
+.Boton_reset-avatar {
+    position: absolute;
+    left: calc(100% - 40px);
+    top: calc(100% - 40px);
+    background-color: white;
+    box-shadow: var(--Caja_sombra-principal);
+    width: 40px;
+    height: 40px;
+    border: 2px solid var(--Color_oscuro);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.Boton_reset-avatar i {
+    font-size: 1.2rem;
+    vertical-align: middle;
+    color: var(--Color_oscuro);
+}
+
+.ocultar {
+    display: none;
+}
+
+.Perfil_usuario-body {
+    width: 100%; /* Ocupa todo el ancho de la página */
+    height: auto; /* Altura fija, ajusta según necesites */
+    position: relative;
+    display: flex; /* Usa flexbox para centrar contenido */
+    justify-content: center; /* Centra contenido horizontalmente */
+    align-items: center; /* Centra contenido verticalmente */
+    margin: 0 auto; /* Centra el contenedor en la página */
+    background-color: white;
+}
+
+.Titulo_usuario {
+    display: flex;
+    text-align: center;
+    justify-content: center; /* Centra el título horizontalmente */
+    width: 100%;
+    color: var(--Color_oscuro);
+    font-weight: bold;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.Descripcion_usuario {
+    color: var(--Color_oscuro);
+    font-size: 15px;
+}
+
+.Perfil_usuario-info,
+.Perfil_usuario-bio {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 3rem;
+    background-color: white;
+    border: 2px solid var(--Color_grisapagado);
+    border-radius: 20px;
+    width: 100%;
+}
+
+.Perfil_usuario-bio {
+    margin-top: 80px; /* Añade un margen superior para bajar los elementos */
+    text-align: center;
+    height: auto; /* Permite que la altura sea automática */
+    width: 850px; /* Ancho fijo */
+    overflow: hidden; 
+    transition: 0.5s;
+}
+
+.Perfil_usuario-info {
+    margin-top: 40px; /* Añade un margen superior para bajar los elementos */
+    margin-bottom: 40px;
+    width: 750px;
+    height: auto;
+    transition: 0.5s;
+}
+
+.Lista_datos {
+    width: 50%;
+    list-style: none;
+    transition: all 0.5s;
+}
+
+.Lista_datos li {
+    padding: 5px 0;
+}
+
+.Lista_datos li i {
+    margin-right: 1rem;
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+
+/* Media Queries para pantallas menores a 800px */
+@media (max-width: 1000px) {
+    .Perfil_usuario-bio,
+    .Perfil_usuario-info {
+        width: 90%; /* Hace que los contenedores sean más pequeños */
+        padding: 1.5rem; /* Reduce el padding */
+    }
+
+    .Titulo_usuario {
+        font-size: 17px; /* Ajusta el tamaño del título */
+    }
+
+    .Descripcion_usuario {
+        font-size: 13px; /* Ajusta el tamaño de la descripción */
+    }
+
+    .Boton_portada {
+        padding: 7px 20px; /* Reduce el padding del botón */
+        font-size: 0.9em; /* Ajusta el tamaño de la fuente del botón */
+    }
+
+    .Perfil_usuario-avatar {
+        width: 150px; /* Reduce el tamaño del avatar */
+        height: 150px; /* Reduce el tamaño del avatar */
+    }
+
+    .Boton_cargar-avatar {
+        width: 40px; /* Reduce el tamaño del botón para cargar avatar */
+        height: 40px; /* Reduce el tamaño del botón para cargar avatar */
+    }
+
+    .Boton_portada {
+        padding: 12px 20px; /* Reducir espaciado interno */
+        font-size: 0.8em; /* Tamaño de letra más pequeño */
+        top: 80px; /* Ajustar la posición superior */
+    }
+
+    .Boton_cargar-avatar i {
+        font-size: 1rem; /* Reduce el tamaño del icono */
+    }
+
+    .Lista_datos li {
+        padding: 3px 0; /* Reduce el padding en la lista de datos */
+    }
+
+    .Lista_datos li i {
+        font-size: 1rem; /* Ajusta el tamaño del icono de la lista */
+    }
+}
+
+
+/* Estilos para el formulario de actualización */
+
+.Boton_actualizar {
+    margin-bottom: 40px;
+    display: inline-block; /* Para que los botones se alineen en línea */
+    text-align: center;
+    width: 150px;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--Color_oscuro);
+    border-radius: 8px;
+    border: 2px solid var(--Color_oscuro);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.Boton_actualizar:hover {
+    background: var(--Color_oscuro);
+    color: aliceblue;
+    transition: 0.5s;
+}
+
+#Formulario_actualizar {
+    width: 100%; /* El formulario ocupará el 100% del ancho de la página */
+    height: auto; /* Altura fija del formulario */
+    display: flex;
+    justify-content: center; /* Centrar el formulario horizontalmente */
+    margin-top: 20px;
+    margin-bottom: 50px;
+    top: 0;
+    left: 0;
+    right: 0;
+    box-sizing: border-box; 
+}
+
+#Formulario_actualizar form {
+    width: 35%; /* El formulario tiene un ancho del 35% de su contenedor */
+    height: auto; /* El formulario tendrá un 90% de la altura del contenedor */
+    margin: 0 auto; /* Ancho máximo del formulario */
+    padding: 20px; /* Espaciado interno */
+    background: rgb(177, 183, 255); /* Color de fondo */
+    border-radius: 20px; /* Bordes redondeados */
+    color: var(--Color_oscuro); /* Color del texto */
+    box-shadow: var(--Caja_sombra-principal);
+    overflow: hidden;
+    transition: all 0.5s;
+}
+
+#Formulario_actualizar form hr {
+    border: none; /* Sin borde */
+}
+
+/* Estilos para los iconos y los labels */
+#Formulario_actualizar form label {
+    color: var(--Color_oscuro); /* Color de las etiquetas */
+    font-size: 15px; /* Tamaño de las etiquetas */
+    padding: 10px; /* Espaciado interno de las etiquetas */
+    font-weight: 500; /* Peso de la fuente */
+    display: flex;
+    align-items: center; /* Alineación vertical del contenido */
+}
+
+#Formulario_actualizar form label i {
+    margin-right: 10px; /* Espaciado entre el icono y el texto */
+    font-size: 18px; /* Tamaño de los iconos */
+    color: var(--Color_oscuro); /* Color de los iconos */
+}
+
+/* Estilos para los inputs */
+#Formulario_actualizar form input {
+    display: block; /* Mostrar como bloque */
+    border: none; /* Sin borde */
+    background-color: rgb(220, 222, 255);
+    width: 97%; /* Ancho del input */
+    margin: 4px auto; /* Margen superior e inferior */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    outline: none; /* Sin contorno */
+    font-size: 16px; /* Tamaño de la fuente dentro de los inputs */
+}
+
+#Formulario_actualizar form select {
+    display: block; /* Mostrar como bloque */
+    border: none; /* Sin borde */
+    background-color: rgb(220, 222, 255);
+    width: 97%; /* Ancho del input */
+    margin: 4px auto; /* Margen superior e inferior */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 8px; /* Bordes redondeados */
+    outline: none; /* Sin contorno */
+    font-size: 16px; /* Tamaño de la fuente dentro de los inputs */
+    cursor: pointer;
+}
+
+/* Contenedor de los botones */
+.Boton_formulario {
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    gap: 20px; /* Espaciado entre los botones */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+#Formulario_actualizar form button {
+    display: inline-block;
+    margin-bottom: 20px;
+    cursor: pointer;
+    align-items: center;
+    background-color: #FABF1E;
+    color: aliceblue;
+    border: 2px solid transparent;
+    font-size: 20px;
+    border-radius: 28px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-secundaria);
+}
+
+#Formulario_actualizar form button:hover {
+    background-color: #ED9200;
+}
+
+/* Estilos responsivos para pantallas más pequeñas */
+@media (max-width: 1250px) {
+    /* Ajustes para el botón */
+    .Boton_actualizar {
+        padding: 8px 30px; /* Reducir espaciado interno */
+        font-size: 14px; /* Tamaño de letra más pequeño */
+        margin-bottom: 30px;
+    }
+
+    /* Ajustes para el formulario */
+    #Formulario_actualizar form {
+        width: 80%; /* Hacer el formulario más ancho en pantallas pequeñas */
+        padding: 15px; /* Reducir el espaciado interno */
+        height: auto; /* Dejar que la altura se ajuste automáticamente */
+    }
+
+    #Formulario_actualizar form h1 {
+        font-size: 20px; /* Reducir el tamaño del título */
+    }
+
+    #Formulario_actualizar form label {
+        font-size: 14px; /* Tamaño de etiqueta más pequeño */
+    }
+
+    #Formulario_actualizar form input, 
+    #Formulario_actualizar form select {
+        font-size: 14px; /* Reducir tamaño de fuente de los inputs y selects */
+        padding: 8px; /* Reducir el padding */
+    }
+
+    /* Ajustes para los botones en el formulario */
+    #Formulario_actualizar form button {
+        padding: 8px 30px; /* Reducir espaciado interno */
+        font-size: 14px; /* Tamaño de letra más pequeño */
+    }
+}
+
+/*Mascotas publicadas*/
+.Publicaciones {
+    background-color: var(--Color_oscuro);
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+}
+
+.Agregar_publicacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Boton_agregar .icono {
+    font-size: 20px; /* Hace el icono más grande */
+    margin-top: 0.2rem;
+    color: aliceblue;
+}
+
+.Boton_agregar {
+    border-radius: 50%;
+    padding: 15px 19.5px;
+    cursor: pointer;
+    border: 2px solid white;
+    transition: transform 0.5s ease;
+    transition: 0.5s;
+    background-color: #FABF1E;
+    color: aliceblue;
+    border: 2px solid transparent;
+    margin: 0px 200px;
+    text-decoration: none;
+    box-shadow: var(--Caja_sombra-secundaria);
+}
+
+.Boton_agregar:hover {
+    transform: translateY(-5px);
+    background-color: #ED9200;
+}
+
+.Boton_agregar:active {
+    transform: translateY(0);
+}
+
+.Publicaciones {
+    background-color: var(--Color_oscuro);
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    
+}
+
+.Contenedor_publicaciones {
+    width: 90%; /* Asegura que el contenedor use el 100% del ancho disponible */
+    margin: 50px 0;
+    border: 3px solid gray; /* Agrega borde al contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    columns: 5 320px;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.Contenedor_publicaciones p {
+    color: aliceblue;
+}
+
+.Mascota {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: var(--Caja_sombra-principal); /* Sombra ligera */
+    overflow: hidden;
+    color: white;
+    width: 100%; /* Asegura que las tarjetas ocupen el 100% del espacio de la columna */
+    max-height: 800px;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.5s;
+}
+
+.Mascota:hover {
+    border: 2px solid aliceblue;
+    transform: scale(1.1);
+    transform: translateY(-9px);
+    box-shadow: 0px 6px 50px -20px rgba(255, 255, 255, 0.4);
+}
+
+.Mascota img {
+    width: 100%;
+    height: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    object-fit: cover; /* Hace que la imagen cubra completamente el espacio sin perder proporciones */
+    display: block;
+    transition: transform 0.5s;
+    text-align: center;
+    justify-content: center;
+}
+
+.Descripcion_mascota {
+    width: 100%;
+    background: transparent;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px 30px; /* Ajustar padding según preferencia */
+    text-align: center; /* Centrar el texto horizontalmente */
+    display: flex; /* Usar flexbox para centrar verticalmente */
+    flex-direction: column; /* Asegurar que el contenido esté apilado verticalmente */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    transition: all 0.5s;
+    height: 0; /* Asegura que ocupe todo el espacio de la publicacion */
+    color: transparent;
+}
+
+.Mascota:hover .Descripcion_mascota {
+    height: 100%;
+    color: aliceblue;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)); /* Ajustar opacidad */
+}
+
+.Descripcion_mascota h2 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin: 0; /* Eliminar margen superior e inferior */
+    letter-spacing: 2px;
+}
+
+.Descripcion_mascota p {
+    margin: 5px 0;
+}
+
+/* Estilo para la ventana para informacion de la publicacion */
+.Ventana_informacion {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(32, 32, 45, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 9998;
+}
+
+/* Clases para hacer visibles */
+.Ventana_informacion.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Caja principal tipo Instagram */
+.Modal_main_informacion {
+    display: flex;
+    background-color: aliceblue;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70%;
+    height: 70%;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.Ventana_informacion.visible .Modal_main_informacion {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Imagen izquierda */
+.Modal_imagen {
+    flex: 1;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Modal_imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenido derecho */
+.Modal_contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    margin-left: 10px;
+}
+
+/* Encabezado */
+.Modal_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Modal_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.Modal_usuario {
+    font-weight: bold;
+    margin-left: 10px;
+    color: var(--Color_oscuro);
+    flex: 1;
+}
+
+/* Informacion mascota */
+.Modal_mascota_info {
+    margin-top: 20px;
+    padding-right: 10px;
+    max-width: 100%;
+    max-height: 45vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.Modal_mascota_info::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Modal_mascota_info::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.4);
+    border-radius: 4px;
+}
+
+.Modal_mascota_info::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80, 80, 80, 0.6);
+}
+
+.Modal_mascota_info h1 {
+    font-size: 15px;
+    color: var(--Color_oscuro);
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.Modal_mascota_info p {
+    font-size: 15px;
+    color: var(--Color_oscuro);
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Acciones */
+.Modal_acciones {
+    margin: 10px 0px;
+    display: flex;
+    gap: 20px;
+    color: var(--Color_oscuro);
+}
+
+/* Info inferior */
+.Modal_info {
+    margin-top: auto;
+    font-size: 16px;
+    color: var(--Color_grisoscuro);
+}
+
+.Modal_fecha {
+    font-size: 14px;
+    color: var(--Color_grisapagado);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--Color_oscuro);
+    transition: color 0.3s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.btn-icon.active {
+    color: var(--Color_texto_principal);
+}
+
+/* Estilos para pantallas tipo tablet */
+@media (max-width: 1800px) {
+
+    .Modal_main_informacion {
+        width: 90%;
+    }
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 800px) {
+    .Modal_main_informacion {
+        flex-direction: column; /* Imagen arriba, texto abajo */
+        width: 85%;
+        height: auto;
+        max-height: 70%;
+        border-radius: 15px;
+    }
+
+    .Modal_imagen {
+        width: 100%;
+        height: auto;
+        flex: none;
+    }
+
+    .Modal_imagen img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .Modal_header {
+        width: 100%;
+    }
+
+    .Modal_contenido {
+        flex: none;
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Modal_mascota_info {
+        max-height: none;
+        padding-right: 0;
+    }
+
+    .Modal_acciones {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .Modal_info {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+/* Estilos para el popup de confirmación */
+.Popup_confirmacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0; /* Empieza con opacidad 0 */
+    transition: opacity 0.5s; /* Transición de opacidad */
+}
+
+.Popup_confirmacion.visible {
+    display: flex; /* Mostrar cuando se agrega la clase visible */
+    opacity: 1; /* Transición a opacidad 1 */
+}
+
+
+/* Estilo para el contenido del popup */
+.Popup_contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.4s; /* Transición de opacidad */
+}
+
+.Popup_confirmacion.visible .Popup_contenido {
+    opacity: 1; /* Aparece con opacidad completa */
+}
+
+.Popup_contenido p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.Boton_confirmar, .Boton_cancelar {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Boton_cancelar {
+    background-color: rgb(83, 205, 59);
+    color: white;
+}
+
+.Boton_cancelar:hover {
+    background-color: rgb(62, 155, 43);
+}
+
+.Boton_confirmar {
+    background-color: var(--Color_texto_principal);
+    color: white;
+}
+
+.Boton_confirmar:hover {
+    background-color: rgb(187, 19, 58);
+}
+
+
+
+
+
+
+
+
+
+/* Estilo para la ventana que cubre toda la página */
+.Ventana_publicar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8); /* Color blanco transparente */
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9998; /* Capa alta para estar sobre todo el contenido */
+    opacity: 0;
+    transition: all 0.5s;
+}
+
+/* Clases para hacer visibles */
+.Ventana_publicar.visible {
+    display: flex; /* Muestra la ventana */
+    opacity: 1; /* Opacidad completa */
+}
+
+/* Estilo para el contenedor que está centrado en la ventana */
+.Contenedor_publicar {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    display: none;
+    box-shadow: var(--Caja_sombra-principal);
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999; /* Más alto que la ventana */
+    width: 850px;
+    padding: 30px 35px 35px;
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.Contenedor_publicar.visible {
+    display: block; /* Muestra el contenedor */
+    opacity: 1; /* Opacidad completa */
+}
+
+.Contenedor_publicar.disable :where(.Editor_panel, .Reset_filtro, .Continuar) {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.Contenedor_publicar h2 {
+    color: black;
+    font-size: var(--Font_size);
+}
+
+.Contenedor_publicar .wrapper {
+    display: flex;
+    margin: 20px 0;
+    min-height: 335px;
+}
+
+.wrapper .Editor_panel {
+    width: 280px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    border: 1px solid white;
+}
+
+.Editor_panel .Titulo_filtro {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 12px;
+}
+
+.Editor_panel .Opciones, .Controles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.Editor_panel button {
+    height: 40px;
+    font-size: 14px;
+    color: rgb(142, 142, 142);
+    margin-bottom: 8px;
+    border-radius: 8px;
+    background-color: white;
+    border: 2px solid rgb(142, 142, 142);
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.Editor_panel button:hover {
+    color: black;
+    border: 2px solid black;
+}
+
+.Editor_panel .Filtro button {
+    width: calc(100% / 2 - 4px);
+}
+
+.Filtro button.active {
+    color: white;
+    background: black;
+    border-color: black;
+}
+
+.Filtro .Slider {
+    margin-top: 12px;
+}
+
+.Filtro .Slider .Filtro_info {
+    display: flex;
+    color: black;
+    font-size: 14px;
+    justify-content: space-between;
+}
+
+.Filtro .Slider input {
+    width: 100%;
+    height: 5px;
+    accent-color: black;
+}
+.Editor_panel .Rotacion {
+    margin-top: 17px;
+}
+
+.Editor_panel .Rotacion button { 
+    width: calc(100% / 4 - 3px);
+}
+
+.Rotacion button:nth-child(3),
+.Rotacion button:nth-child(4) {
+    font-size: 18px;
+}
+
+.wrapper .Preview_imagen {
+    flex-grow: 1;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+}
+
+.wrapper .Preview_imagen img {
+    max-width: 490px;
+    max-height: 335px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.Controles button {
+    font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.Controles .Reset_filtro {
+    color: black;
+    border: none;
+    margin-right: 20px;
+}
+
+.Controles .Cargar_imagen {
+    color: black;
+    border: 2px solid black;
+    margin-right: 20px;
+}
+
+.Controles .Continuar {
+    color: var(--Color_texto_principal);
+    border: 2px solid var(--Color_texto_principal);
+}
+
+.Controles .Reset_filtro:hover {
+    color: var(--Color_texto_principal); /* Cambia solo el color al hacer hover */
+}
+
+.Controles .Cargar_imagen:hover {
+    color: white;
+    background-color: black;
+    border: 2px solid black;
+}
+
+.Controles .Continuar:hover {
+    color: white;
+    background-color: var(--Color_texto_principal);
+    border: 2px solid var(--Color_texto_principal);
+}
+
+/* Estilos para pantallas menores a 1000px */
+@media screen and (max-width: 1000px) {
+    .Contenedor_publicar {
+        width: 750px;
+        padding: 35px 30px;
+    }
+    .Contenedor_publicar h2 {
+        font-size: 20px;
+    }
+    .wrapper .Editor_panel {
+        width: 250px;
+    }
+    .wrapper .Preview_imagen img {
+        max-width: 420px;
+        max-height: 300px;
+    }
+}
+
+/* Estilos para pantallas menores a 800px */
+@media screen and (max-width: 800px) {
+    .Contenedor_publicar {
+        width: 500px;
+        max-height: 100%;
+        padding: 20px 25px;
+    }
+    .Contenedor_publicar h2 {
+        font-size: 18px;
+    }
+    .wrapper {
+        flex-direction: column;
+    }
+    .wrapper .Editor_panel {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .wrapper .Preview_imagen {
+        margin-left: 0;
+        max-width: 100%;
+    }
+    .wrapper .Preview_imagen img {
+        max-width: 100%;
+        max-height: 280px;
+    }
+    .Editor_panel button {
+        width: calc(100% / 3 - 8px);
+        font-size: 13px;
+    }
+    .Editor_panel .Rotacion button {
+        width: calc(100% / 2 - 8px);
+    }
+    .Controles .Reset_filtro {
+        margin-bottom: 20px;
+    }
+    .Controles .Continuar {
+        margin-left: 75px;
+    }
+}
+
+/* Estilo para el Contenedor_detalles similar al Contenedor_publicar */
+.Contenedor_detalles {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: var(--Caja_sombra-principal);
+    border-radius: 10px;
+    text-align: center;
+    z-index: 9999;
+    transition: all 0.5s;
+    width: 850px;
+    padding: 30px 35px 35px;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.Contenedor_detalles.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.Contenedor_detalles h2 {
+    color: black;
+    font-size: var(--Font_size);
+}
+
+.Contenedor_detalles .Detalles_form {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.Contenedor_detalles label {
+    color: black;
+    font-size: var(--Font_size);
+}
+
+.Contenedor_detalles input, .Contenedor_detalles textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid var(--Color_grisapagado);
+    font-size: 14px;
+}
+
+.Contenedor_detalles textarea {
+    resize: none;
+    height: auto; /* Ajusta la altura automáticamente */
+    min-height: 100px; /* Puedes cambiar este valor para definir una altura mínima */
+    box-sizing: border-box; /* Asegura que el padding y borde se incluyan en el tamaño total */
+}
+
+.Contenedor_detalles .Detalles_controles {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.Regresar_publicar {
+    font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    color: black;
+    border: 2px solid black;
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.Regresar_publicar:hover {
+    color: white;
+    background-color: black;
+}
+
+.Finalizar_publicacion {
+    font-size: 14px;
+    padding: 11px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    background: white;
+    color: var(--Color_texto_principal);
+    border: 2px solid var(--Color_texto_principal);
+    text-transform: uppercase;
+    transition: all 0.5s;
+}
+
+.Finalizar_publicacion:hover {
+    color: white;
+    background-color: var(--Color_texto_principal);
+    border: 2px solid var(--Color_texto_principal);
+}
+
+/* Estilos para la ventana de previsualización */
+.Popup_previsualizacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: none; /* Oculto por defecto */
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    opacity: 0; /* Empieza con opacidad 0 */
+    transition: opacity 0.5s; /* Transición de opacidad */
+    height: auto;
+    width: auto;
+}
+
+.Popup_previsualizacion.visible {
+    display: flex; /* Mostrar cuando se agrega la clase visible */
+    opacity: 1; /* Transición a opacidad 1 */
+}
+
+/* Estilo para el contenido del popup de previsualización */
+.Popup_previsualizacion .Popup_contenido {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.4s; /* Transición de opacidad */
+}
+
+.Popup_previsualizacion.visible .Popup_contenido {
+    opacity: 1; /* Aparece con opacidad completa */
+}
+
+.Popup_previsualizacion .Cerrar_ventana {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.Popup_previsualizacion h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.Popup_previsualizacion .Vista_previa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+    width: auto;
+}
+
+.Popup_previsualizacion .Vista_previa img {
+    max-width: 490px;
+    max-height: 335px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    margin-bottom: 20px;
+}
+
+.Popup_previsualizacion .Vista_previa h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    max-width: 500px;
+}
+
+.Popup_previsualizacion .Vista_previa p {
+    font-size: 16px;
+    margin-bottom: 20px;
+    max-width: 500px;
+}
+
+.Controles_previsualizacion {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.Controles_previsualizacion .Cancelar_publicacion, .Controles_previsualizacion .Publicar_imagen {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.Controles_previsualizacion .Cancelar_publicacion {
+    background-color: var(--Color_texto_principal);
+    color: white;
+}
+
+.Controles_previsualizacion .Cancelar_publicacion:hover {
+    background-color: rgb(187, 19, 58);
+}
+
+.Controles_previsualizacion .Publicar_imagen {
+    background-color: rgb(83, 205, 59);
+    color: white;
+}
+
+.Controles_previsualizacion .Publicar_imagen:hover {
+    background-color: rgb(62, 155, 43);
+}
+
+/* Estilos responsive */
+@media screen and (max-width: 1000px) {
+    .Contenedor_detalles {
+        width: 750px;
+        padding: 35px 30px;
+    }
+    .Contenedor_detalles h2 {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .Contenedor_detalles {
+        width: 500px;
+        padding: 20px 25px;
+    }
+    .Contenedor_detalles h2 {
+        font-size: 18px;
+    }
+    .Contenedor_detalles .Detalles_controles button {
+        width: calc(50% - 10px);
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Botón "X" de cerrar modal */
+.Cerrar_ventana {
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    font-size: 28px;
+    color: var(--Color_oscuro);
+    cursor: pointer;
+    z-index: 10000;
+}
+
+.Paginador {
+    margin-top: 20px; /* Espacio entre el contenedor de galería y el paginador */
+    width: 85%; /* Alineación con el contenedor de galería */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.Paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Espacio entre botones y números */
+    transition: all 0.5s;
+}
+
+.Elementos_porpagina {
+    display: flex;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.Paginacion button {
+    background-color: white;
+    border: 2px solid transparent;
+    height: 45px;
+    width: 45px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginacion button i {
+    color: var(--Color_texto_principal); /* Color para las flechas */
+}
+
+.Paginacion::before button i {
+    height: 20px;
+    width: 20px;
+}
+
+.Paginacion .activo {
+    background-color: var(--Color_texto_principal);;
+    color: white;
+    border: 2px solid var(--Color_texto_principal);;
+}
+
+.Paginacion div span {
+    background-color: white;
+    border: 2px solid var(--Color_grisapagado);
+    color: var(--Color_texto_principal);
+    padding: 6.5px 13.5px;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginacion div span:hover {
+    background-color: white;
+}
+
+.Paginacion div span.activo {
+    background-color: var(--Color_texto_principal);;
+    color: white;
+    border: 2px solid transparent;
+}
+
+.Paginador .Elementos_pagina {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    gap: 10px;
+}
+
+.Paginador .Elementos_pagina label {
+    font-weight: 500;
+}
+
+.Paginador .Elementos_pagina select {
+    background-color: white;
+    border: 3px solid var(--Color_grisapagado);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: var(--Color_texto_principal);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginador .Elementos_pagina select:hover {
+    border-color: var(--Color_texto_principal);
+}
+
+.Paginador .Elementos_pagina select:focus {
+    outline: none;
+    border-color: var(--Color_texto_principal);
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginador .Elementos_pagina option {
+    padding: 10px;
+    background-color: white;
+    color: var(--Color_texto_principal);
+}
+
+/* Estilos para pantallas tipo tablet */
+@media (max-width: 1000px) {
+    .Contenedor_publicaciones {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el tamaño mínimo de las tarjetas */
+        gap: 30px; /* Reduce la separación entre las tarjetas */
+        padding: 50px;
+        width: 90%; /* Asegura que el contenedor use el 90% del ancho disponible */
+    }
+
+    .Mascota {
+        margin-bottom: 20px; /* Espacio entre las tarjetas */
+    }
+
+    .Paginador {
+        width: 90%; /* Alinea el paginador con el contenedor de galería */
+        flex-direction: column; /* Cambia la orientación a vertical para facilitar el uso en pantallas pequeñas */
+        gap: 20px;
+    }
+
+    .Paginacion {
+        justify-content: center; /* Centra los botones de paginación */
+        gap: 10px; /* Espacio adicional entre los botones */
+    }
+
+    .Elementos_pagina {
+        justify-content: center; /* Centra el selector de elementos por página */
+        margin-bottom: 20px;
+    }
+}
+
+/* Estilos para pantallas tipo celular */
+@media (max-width: 800px) {
+    .Contenedor_publicaciones {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta las tarjetas para pantallas pequeñas */
+        gap: 20px; /* Reduce la separación entre las tarjetas */
+        padding: 30px;
+        width: 95%; /* Se asegura de usar casi todo el ancho disponible */
+    }
+
+    .Mascota {
+        margin-bottom: 15px; /* Espacio entre las tarjetas */
+    }
+
+    .Descripcion_mascota h2 {
+        font-size: 20px; /* Reduce el tamaño de fuente de los títulos */
+    }
+
+    .Descripcion_mascota p {
+        font-size: 14px; /* Ajusta el tamaño de la descripción para mejor legibilidad */
+    }
+
+    .Paginador {
+        width: 100%; /* Utiliza todo el ancho disponible para el paginador */
+        flex-direction: column; /* Orientación vertical para mejor legibilidad */
+        gap: 15px;
+    }
+
+    .Paginacion {
+        gap: 8px; /* Reduce el espacio entre los botones de paginación */
+    }
+
+    .Paginacion button, .Paginacion div span {
+        height: 35px;
+        width: 35px;
+        font-size: 16px; /* Ajusta el tamaño de los números */
+    }
+
+    .Elementos_pagina {
+        font-size: 14px; /* Ajusta el tamaño de texto para elementos por página */
+        margin-bottom: 20px;
+    }
+
+    .Elementos_pagina select {
+        padding: 6px 10px;
+        font-size: 14px; /* Tamaño reducido para adaptarse a pantallas pequeñas */
+    }
+}
+
+
+/* Estilos para el pie de página */
+footer {
+    background-color: var(--Color_oscuro);
+    /* Fondo oscuro para resaltar el color aliceblue */
+    color: aliceblue;
+    /* Todo el texto en color aliceblue */
+    padding: 80px 20px;
+    text-align: center;
+    /* Centra el contenido de texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Alinea todo verticalmente en el centro */
+    justify-content: center;
+}
+
+.Footer_section {
+    margin: 20px 0;
+    /* Espaciado entre secciones del footer */
+    width: 100%;
+}
+
+.Footer_section-contacto p,
+.Footer_section-contacto h3 {
+    color: aliceblue;
+    /* Asegura que el texto esté en color aliceblue */
+    margin: 10px 0;
+    /* Espaciado vertical entre los textos */
+}
+
+.Footer_content h3 {
+    display: flex;
+    flex-direction: column;
+    /* Coloca los iconos de redes sociales en columna */
+    align-items: center;
+}
+
+.Footer_section-social {
+    display: flex;
+    /* Coloca los iconos de redes sociales en fila */
+    justify-content: center;
+    /* Centra los iconos horizontalmente */
+    margin: 10px 0;
+    /* Espaciado vertical entre iconos y otras secciones */
+}
+
+.Footer_section-social a {
+    color: aliceblue;
+    /* Etiquetas de enlace en color aliceblue */
+    margin: 0 15px;
+    /* Espaciado horizontal entre los iconos (ajusta el valor según sea necesario) */
+}
+
+.Footer_section-contacto a {
+    color: var(--Color_texto_principal);
+    /* Color de los enlaces en aliceblue */
+    text-decoration: none;
+    /* Quita el subrayado de los enlaces */
+    margin: 10px 0;
+    /* Espaciado entre los enlaces */
+}
+
+.Footer_section-links a {
+    color: var(--Color_texto_principal);
+    /* Color de los enlaces en aliceblue */
+    text-decoration: none;
+    /* Quita el subrayado de los enlaces */
+    margin: 10px 0;
+    /* Espaciado entre los enlaces */
+}
+
+.Footer_section-social i {
+    color: aliceblue;
+    /* Iconos en color aliceblue */
+    font-size: 24px;
+    /* Ajusta el tamaño de los iconos */
+    margin: 10px 0;
+    /* Espaciado entre los iconos */
+    transition: 0.3s ease;
+    /* Añade una transición suave en el hover */
+}
+
+.Footer_section-social i:hover {
+    color: #f0f8ff;
+    /* Color ligeramente más claro al hacer hover */
+    transform: scale(1.1);
+    /* Efecto de escala al pasar el ratón por encima */
+}
+
+/* Responsivo para pantallas pequeñas */
+@media screen and (max-width: 800px) {
+    footer {
+        padding: 40px 10px;
+        font-size: 14px;
+    }
+
+    .Footer_section-social i {
+        font-size: 20px;
+        /* Iconos ligeramente más pequeños en pantallas pequeñas */
+    }
+}

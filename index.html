@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="Access/IndexStyle.css">
+        <!--Iconos-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Pata-->
+        <link rel="icon" href="Imagens/pata.png" type="image/png">
+
+        <title>Pawfect</title>
+    </head>
+
+    <body>
+
+        <!--Header - Menu-->
+        <header>
+            <div class="Contenedor_header">
+
+                <div class="Logo">
+                    <a href="index.html">
+                        <img src="Imagens/name.png" alt="">
+                    </a>
+                </div>
+
+                <div class="Menu">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Nosotros</a></li>
+                            <li><a href="#">Servicios</a></li>
+                            <li><a href="Pets.html">Mascotas</a></li>
+                            <li><a href="Perfil.html">Perfil</a></li>
+                        </ul>
+                    </nav>
+
+                    <a href="LoginRegistro.html" class="Boton_principal"><span>INGRESAR</span></a>
+
+                    <script src="Scripts/BotonPrincipal.js"></script>
+
+                    <div class="SocialMedia">
+                        <a href="#">
+                            <img src="Imagens/facebook.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="Imagens/x.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="Imagens/instagram.png" alt="">
+                        </a>
+                    </div>
+                    
+                    <div class="menu-toggle">
+                            <i class="fas fa-bars"></i> <!-- Icono de hamburguesa de Font Awesome -->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+            <!--INICIO-->
+            <!--Portada de inicio-->
+            <div class="Contenedor_cover">
+                <div class="Cover">
+                    <div class="Texto_cover">
+                        <h2>HOLAAAA.</h2>
+                        <h1>Proyecto de Tecnología</h1>
+                        <p>Mayra Alejandra Peñate Cervantes</p>
+                        <p>Valeria Gonzalez Tovar</p>
+                        <p>1101 JT</p>
+                        <a href="#Inicio_index" class="Boton_texto-cover">Empezar</a>
+                    </div>
+                    <img src="Imagens/doggie.jpg" alt="Portada">
+                </div>
+            </div>
+
+            <!--Generador de confianza-->
+            <div class="Contenedor_confianza Contenedor_carta" id="Inicio_index">
+                <div class="Confianza Carta">
+                    <div class="Texto_Confianza Texto_carta">
+                        <p>Empatía, Responsabilidad, Cuidado y Amor</p>
+                        <h1>ADOPTAR UNA MASCOTA ES UNA DE LAS MEJORES DECISIONES QUE PUEDES TOMAR.</h1>
+                    </div>
+                    <div class="Caja_carta_primaria">
+                        <div class="Caja_carta">
+                            <img src="Imagens/gifs/gif1.gif" alt="">
+                            <h2>Cuidado y compromiso total</h2>
+                            <p>Adoptar es un acto de amor y responsabilidad. Cada mascota necesita atención,
+                                paciencia y cariño para adaptarse y formar un vínculo único contigo.</p>
+                        </div>
+                        <div class="Caja_carta">
+                            <img src="Imagens/gifs/gif2.gif" alt="">
+                            <h2>Comunidad con propósito</h2>
+                            <p>En Sketch, fomentamos la colaboración con artistas emergentes y brindamos un espacio para
+                                que compartan su trabajo, ampliando alcance y reconocimiento.</p>
+                        </div>
+                        <div class="Caja_carta">
+                            <img src="Imagens/gifs/gif3.gif" alt="">
+                            <h2>Diversidad de compañeros</h2>
+                            <p>Desde perros juguetones hasta gatos tranquilos, hay una mascota perfecta 
+                                para cada persona. Explora, conoce y encuentra a tu mejor amigo fiel.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--Carrusel de imagenes-->
+            <div class="Carrusel-body">
+                <div class="Texto_carrusel">
+                    <h1>No compres amor, adóptalo y cambia una vida para siempre</h1>
+                    <p>En esta página encontrarás mascotas que buscan un hogar lleno de amor. 
+                        Conéctate con refugios y dale una segunda oportunidad a quien más lo necesita. </p>
+                </div>
+                <div class="Contenedor_carrusel">
+                    <div class="Carruseles" id="Slider">
+                        <section class="Slider_section">
+                            <img src="Imagens/Imagen1.jpg" alt="imagen1">
+                        </section>
+                        <section class="Slider_section">
+                            <img src="Imagens/Imagen2.jpg" alt="imagen2">
+                        </section>
+                        <section class="Slider_section">
+                            <img src="Imagens/Imagen3.jpg" alt="imagen3">
+                        </section>
+                    </div>
+                    <div class="Boton_izquierdo"><i class="fa-solid fa-arrow-left"></i></div>
+                    <div class="Boton_derecho"><i class="fa-solid fa-arrow-right"></i></div>
+                </div>
+                <script src="Scripts/ScriptCarrusel.js"></script>
+            </div>
+
+
+            <!-- Sección de comentarios -->
+            <div class="Comentarios">
+                <div class="Contenedor_comentarios">
+                    <img src="Imagens/gifs/gif4.gif" alt="">
+                    <h1 class="Titulo-comentarios">
+                        COMENTARIOS
+                    </h1>
+                    <form class="Formulario_comentario">
+                        <textarea name="Comentario" placeholder="Escribe tu comentario aquí..." required></textarea>
+                        <button type="submit" class="Boton_comentarios"><span>Enviar Comentario</span></button>
+                    </form>
+
+                    <div class="Comentarios_recientes">
+                    </div>
+
+                </div>
+            </div>
+
+            <!--Pie de pagina-->
+            <footer>
+                <div class="Footer_content">
+                    <!-- Sección de contacto -->
+                    <div class="Footer_section-contacto">
+                        <h3>Contacto</h3>
+                        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                        <p>Teléfono: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                    </div>
+
+                    <!-- Sección de redes sociales -->
+                    <h3>Síguenos</h3>
+                    <div class="Footer_section-social">
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.x.com"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+
+                    <!-- Sección de enlaces importantes -->
+                    <div class="Footer_section-links">
+                        <h3>Enlaces útiles</h3>
+                        <a href="#">Sobre nosotros</a> |
+                        <a href="#">Política de privacidad</a> |
+                        <a href="#">Términos y condiciones</a>
+                    </div>
+                </div>
+
+                <!-- Sección de derechos de autor -->
+                <div class="Footer_boton">
+                    <p>&copy; 2025 Pawfect. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+
+        </main>
+
+            <!-- Menu hamburguesa -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileMenu = document.querySelector('.menu-toggle');
+                const navList = document.querySelector('.Menu nav ul');
+
+                if (mobileMenu && navList) {
+                    mobileMenu.addEventListener('click', () => {
+                        navList.classList.toggle('active'); // Alterna la clase 'active' en el menú
+
+                        // Maneja la transición del menú
+                        if (navList.classList.contains('active')) {
+                            navList.style.maxHeight = navList.scrollHeight + "px"; // Establece la altura máxima al contenido
+                        } else {
+                            navList.style.maxHeight = "50%"; // Restaura la altura a 0
+                        }
+                    });
+                }
+            });
+        </script>
+
+    </body>
+
+</html>

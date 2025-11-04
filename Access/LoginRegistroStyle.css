@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --Color_texto_principal: rgb(156, 163, 255);
+    --Color_grisapagado: #7B7F82;
+    --Color_grisoscuro: #3D3F40;
+    --Color_oscuro: #20202D;
+    --Color_texto_segundo: rgb(100, 108, 232);
+    --Color_texto_tercero: rgb(70, 77, 184);
+    --Caja_sombra-principal: 0px 6px 50px -20px rgba(0, 0, 0, 0.7);
+    --Caja_sombra-secundaria: 0px 6px 50px -20px rgba(0, 0, 0, 0.5);
+    --Font_size: 16px;
+    --Texto_pequeño_size: 40px;
+    --Texto_carta_size: 24px;
+    --Texto2_carta_size: 20px;
+    --Texto_parrafo: 25px;
+}
+
+body {
+    background: var(--Color_texto_principal);
+}
+
+main {
+    width: 100%;
+    padding: 28px;
+    margin-top: 108px;
+}
+
+.Contenedor {
+    width: 100%;
+    max-width: 750px;
+    margin: auto;
+    position: relative;
+}
+
+.Caja_trasera {
+    height: 350px;
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background-color: rgba(240, 248, 255, 0.40);
+    border-radius: 10px;
+    align-items: center;
+    /* Alinea verticalmente el contenido */
+}
+
+.Caja_trasera div {
+    margin: 65px 40px;
+    color: #f0f8ff;
+    transition: all 500ms;
+}
+
+.Caja_trasera div p,
+.Caja_trasera div button {
+    margin-top: 30px;
+}
+
+.Caja_trasera div h3 {
+    font-weight: bold;
+    font-size: 26px;
+}
+
+/*Formularios*/
+.Contenedor_login-registro {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -48px;
+    /* Eliminar el desplazamiento hacia arriba */
+    left: -20px;
+    transition: left 700ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.Contenedor_login-registro form {
+    width: 100%;
+    padding: 65px 50px;
+    background: aliceblue;
+    position: absolute;
+    border-radius: 20px;
+    color: var(--Color_oscuro);
+    box-shadow: var(--Caja_sombra-principal);
+    /* Sombra suave */
+}
+
+.Contenedor_login-registro form h1 {
+    font-size: 30px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: var(--Color_oscuro);
+}
+
+.Contenedor_login-registro form hr {
+    border: none;
+}
+
+.Contenedor_login-registro form input {
+    display: block;
+    border: none;
+    background-color: aliceblue;
+    width: 95%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 2px solid var(--Color_grisapagado);
+    outline: none;
+}
+
+.Contenedor_login-registro form label {
+    color: var(--Color_oscuro);
+    font-size: 15px;
+    padding: 10px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+.Contenedor_login-registro form button {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    align-items: center;
+    background-color: #FABF1E;
+    color: aliceblue;
+    border: 2px solid transparent;
+    font-size: 17px;
+    border-radius: 28px;
+    padding: 10px 20px;
+    text-decoration: none;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-secundaria);
+}
+
+.Contenedor_login-registro form button:hover {
+    background-color: #ED9200;
+}
+
+.Caja_trasera button {
+    cursor: pointer;
+    align-items: center;
+    background: transparent;
+    color: aliceblue;
+    border-radius: 8px;
+    border: 2px solid aliceblue;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.Caja_trasera button:hover {
+    background: aliceblue;
+    color: var(--Color_texto_principal);
+    transition: 0.5s;
+}
+
+.Formulario_login {
+    opacity: 1;
+    display: block;
+}
+
+.Formulario_registro {
+    display: none;
+}
+
+/*Responsive Design*/
+
+@media screen and (max-width: 855px) {
+
+    main {
+        margin-top: 50px;
+    }
+
+    .Caja_trasera {
+        height: 380px;
+        width: 340px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .Caja_trasera div {
+        margin: 0px;
+        position: absolute;
+    }
+
+    .Contenedor_login-registro {
+        top: -10px;
+        left: -5px;
+        margin: auto;
+    }
+
+    .Contenedor_login-registro form {
+        position: relative;
+    }
+
+    .Caja_trasera-registro, .Caja_trasera-login{
+        width: 250px;
+    }
+}
+
+/*Validadcion formulario*/
+
+.Contenedor_login-registro form span {
+    font-size: 14px;
+    color: red;
+    padding: 5px 5px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+/* Estilo para los inputs con error */
+.Contenedor_login-registro form input.error {
+    border: 2px solid red;
+}
+
+.Boton_regresar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    background: transparent;
+    color: aliceblue;
+    border-radius: 8px;
+    border: 2px solid aliceblue;
+    padding: 10px 20px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.Boton_regresar i {
+    margin-right: 10px;
+}
+
+.Boton_regresar:hover {
+    background: aliceblue;
+    color: var(--Color_texto_principal);
+    transition: 0.5s;
+}
+

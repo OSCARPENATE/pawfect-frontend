@@ -1,0 +1,1227 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --Color_texto_principal: rgb(156, 163, 255);
+    --Color_grisapagado: #7B7F82;
+    --Color_grisoscuro: #3D3F40;
+    --Color_oscuro: #20202D;
+    --Color_texto_segundo: rgb(100, 108, 232);
+    --Color_texto_tercero: rgb(70, 77, 184);
+    --Caja_sombra-principal: 0 4px 8px rgba(0, 0, 0, 0.2);
+    --Caja_sombra-secundaria: 0px 6px 50px -20px rgba(0, 0, 0, 0.2);
+    --Font_size: 16px;
+    --Texto_pequeño_size: 40px;
+    --Texto_carta_size: 24px;
+    --Texto2_carta_size: 20px;
+    --Texto_parrafo: 25px;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    position: fixed;
+    top: 0;
+    /* Asegura que esté en la parte superior */
+    z-index: 10;
+    background-color: var(--Color_texto_principal);
+    box-shadow: var(--Caja_sombra-secundaria);
+}
+
+.Contenedor_header {
+    width: 100%;
+    /* Asegura que el contenedor ocupe el ancho completo */
+    max-width: 1200px;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    /* Correcto uso de justify-content */
+    align-items: center;
+}
+
+/* Asegúrate de que el logo, el menú y los botones de redes sociales ocupen espacios proporcionales */
+.Logo,
+.Menu,
+.SocialMedia {
+    flex: 1;
+    /* Da a cada sección un flex-grow para distribuir el espacio */
+}
+
+.Logo {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 0;
+    transition: 0.5s;
+}
+
+.Logo img {
+    width: 180px;
+    transition: 0.5s;
+}
+
+.Menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0;
+}
+
+.Menu nav {
+    margin: 0px 0px;
+}
+
+.Menu nav ul {
+    display: flex;
+}
+
+.Menu nav ul li {
+    list-style: none;
+    margin: 0px 16px;
+    color: aliceblue;
+}
+
+.Menu nav ul li a {
+    font-size: var(--Font_size);
+    position: relative;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+}
+
+.Menu nav ul li a:after {
+    content: "";
+    position: absolute;
+    background-color: aliceblue;
+    height: 3px;
+    width: 0px;
+    left: 0px;
+    bottom: -10px;
+    transition: 0.3s;
+}
+
+.Menu nav ul li a:hover {
+    color: aliceblue;
+}
+
+.Menu nav ul li a:hover:after {
+    width: 110%;
+    left: -5%;
+}
+
+.Boton_principal {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    /* Alinea el contenido verticalmente */
+    justify-content: center;
+    /* Alinea el contenido horizontalmente */
+    padding: 8px 40px;
+    color: aliceblue;
+    /* Color del texto inicial */
+    border: 2px solid aliceblue;
+    border-radius: 8px;
+    font-weight: 500;
+    margin: 0px 20px;
+    text-decoration: none;
+    overflow: hidden;
+    transition: color 0.3s;
+    /* Transición suave para el color del texto */
+    transition: 0.5s;
+}
+
+.Boton_principal span {
+    position: relative;
+    z-index: 1;
+    /* Asegura que el texto esté por encima del pseudo-elemento */
+}
+
+.Boton_principal::before {
+    content: '';
+    position: absolute;
+    top: var(--y);
+    left: var(--x);
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background-color: aliceblue;
+    /* Color de fondo inicial */
+    transition: width 0.5s, height 0.5s;
+    opacity: 0;
+    /* Opacidad inicial */
+    z-index: 0;
+    /* Asegura que el pseudo-elemento esté detrás del texto */
+}
+
+.Boton_principal:hover::before {
+    width: 200px;
+    /* Tamaño del efecto de expansión */
+    height: 200px;
+    /* Tamaño del efecto de expansión */
+    opacity: 1;
+    /* Aumenta la opacidad al interactuar */
+}
+
+.Boton_principal:hover {
+    color: var(--Color_texto_principal);
+    /* Cambia el color del texto al pasar el mouse */
+}
+
+.Menu .SocialMedia {
+    display: flex;
+    /* Asegura que los iconos se alineen horizontalmente */
+    margin-left: 20px;
+    /* Ajuste opcional para separación con otros elementos */
+    justify-content: flex-end;
+    transition: 0.5s;
+}
+
+.Menu .SocialMedia a {
+    margin: 0px 10px;
+    height: 30px;
+    width: 100%;
+}
+
+.Menu .SocialMedia a img {
+    width: 30px;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    font-size: 25px; /* Ajusta el tamaño del ícono de hamburguesa */
+    color: var(--Color_oscuro);
+}
+
+/* Media Queries para pantallas menores a 1250px */
+@media (max-width: 1250px) {
+    .Contenedor_header {
+        padding: 0 20px; /* Ajuste opcional para el contenedor */
+    }
+
+    .Menu .SocialMedia a {
+        margin: 0 5px; /* Reduce el margen entre iconos de redes sociales */
+    }
+
+    .Menu nav ul li {
+        margin: 0 10px; /* Reduce el margen entre las opciones del menú */
+        justify-content: center;
+        align-items: center;
+    }
+
+    .Boton_principal {
+        padding: 6px 25px;
+        font-size: 16px;
+        margin: 5px; /* Reduce el margen entre los botones de login y cotizar */
+    }
+}
+
+/* Media Queries para pantallas menores a 1000px */
+@media (max-width: 1000px) {
+    header {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    /* El logo se centra en la pantalla */
+    .Contenedor_header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    /* Centra el logo y ajusta su tamaño */
+    .Logo {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .Logo img {
+        margin: 20px;
+        width: 160px; /* Reduce el tamaño del logo */
+    }
+    
+    .Menu .SocialMedia {
+        display: flex;
+        /* Asegura que los iconos se alineen horizontalmente */
+        margin-left: 10px;
+        /* Ajuste opcional para separación con otros elementos */
+        justify-content: flex-end;
+    }
+    
+    .Menu .SocialMedia a {
+        margin: 0px 7px;
+        height: 25px;
+        width: 100%;
+    }
+    
+    .Menu .SocialMedia a img {
+        width: 25px;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 800px) {
+
+    header {
+        height: auto;
+        padding-bottom: 20px;
+    }
+    /* El logo se centra en la pantalla */
+    .Contenedor_header {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+    }
+
+    /* Centra el logo y ajusta su tamaño */
+    .Logo {
+        justify-content: center;
+        margin-right: 0;
+    }
+
+    .Logo img {
+        margin: 20px;
+        width: 150px; /* Reduce el tamaño del logo */
+    }
+    
+    .Menu .SocialMedia {
+        display: flex;
+        /* Asegura que los iconos se alineen horizontalmente */
+        margin-left: 10px;
+        /* Ajuste opcional para separación con otros elementos */
+        justify-content: flex-end;
+    }
+    
+    .Menu .SocialMedia a {
+        margin: 0px 7px;
+        height: 25px;
+        width: 100%;
+    }
+    
+    .Menu .SocialMedia a img {
+        width: 25px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ajusta el tamaño de los botones de cotizar y login */
+    .Boton_principal {
+        padding: 6px 20px;
+        font-size: 14px;
+        margin: 10px 10px;
+    }
+
+    /* Muestra el botón de hamburguesa */
+    .menu-toggle {
+        color: aliceblue;
+        display: flex;
+        margin-left: 20px;
+    }
+
+    /* Ajusta la visibilidad del menú hamburguesa */
+    .Menu nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 172px;
+        right: 0;
+        backdrop-filter: blur(10px);
+        background-color: rgb(70, 77, 184, 0.5);
+        width: 45%;
+        z-index: 1;
+        transition: 0.5s, opacity 0.3s ease;
+        box-shadow: var(--Caja_sombra-principal);
+        max-height: 0; /* Oculta el menú inicialmente */
+        opacity: 0; /* Opacidad inicial */
+        overflow: hidden; /* Oculta el contenido desbordante */
+    }
+
+    .Menu nav ul li a {
+        color: aliceblue;
+    }
+    
+    .Menu nav ul li a:after {
+        background-color: aliceblue;
+    }
+    
+    .Menu nav ul li a:hover {
+        color: aliceblue;
+    }
+
+    .Menu nav ul.active {
+        display: flex;
+        max-height: 300px; /* Ajusta según la altura máxima que esperas */
+        opacity: 1; /* Opacidad al mostrar */
+    }
+
+    .Menu nav ul li {
+        margin: 20px 0;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+/* Portada */
+/* Contenedor principal que centra todo horizontalmente */
+.Contenedor_buscar {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    display: flex; /* Utiliza flexbox para alinear el contenido */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra verticalmente */
+    background: transparent;
+    height: 55px;
+    transition: all 0.5s;
+}
+
+/* Estilos para el campo de búsqueda */
+.Buscador {
+    width: 400px; /* Ajusta el ancho como desees */
+    display: flex;
+    align-items: center;
+    padding: 14px;
+    border-radius: 28px; /* Bordes redondeados */
+    background: white;
+    transition: box-shadow 0.25s;
+    justify-content: center;
+    transition: all 0.5s;
+    position: relative;
+    transition: all 0.5s;
+}
+
+/* Añade sombra al enfocarse en el input */
+.Buscador:focus-within {
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+/* Efecto hover que amplía el buscador */
+.Buscador:hover {
+    width: 600px;
+}
+
+.Buscador input {
+    font-size: 16px;
+    color: var(--Color_oscuro);
+    margin-left: 14px;
+    outline: none;
+    border: none;
+    background: transparent;
+    width: 100%; /* Permite que el input ocupe el ancho del contenedor */
+}
+
+.Buscador input::placeholder, 
+.Buscador span i {
+    color: rgba(0, 0, 0, 0.6);
+}
+
+/* Botón de búsqueda */
+.Boton_buscar {
+    margin-top: 30px;
+    background-color: #FABF1E;
+    color: aliceblue;
+    border: none;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 28px;
+    font-size: 17px;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Boton_buscar:hover {
+    background-color: #ED9200;
+}
+
+.Portada_mascotas {
+    position: relative;
+    display: flex;
+    align-items: center;      /* Centra verticalmente */
+    justify-content: center;  /* Centra horizontalmente */
+    color: aliceblue;
+    width: 100%;
+    height: 600px;            /* Altura fija tipo portada */
+    overflow: hidden;
+}
+
+/* Imagen de fondo */
+.Portada_mascotas img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;      /* Rellena sin deformarse */
+    object-position: center;
+    z-index: 0;             /* Detrás del texto */
+    transition: 0.5s;
+    filter: brightness(95%);
+}
+
+/* Contenedor del texto centrado */
+.Portada_mascotas .Texto_cover {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    backdrop-filter: blur(2px);
+    background-color: rgba(240, 248, 255, 0.3);
+    border-radius: 20px;
+    padding: 40px 60px;
+    transition: 0.5s;
+    border: 2px solid transparent;
+}
+
+.Portada_mascotas .Texto_cover:hover {
+    border: 2px solid aliceblue;
+    transform: scale(1.1);
+    transform: translateY(-10px);
+    box-shadow: 0px 6px 50px -20px rgba(255, 255, 255, 0.6);
+}
+
+
+/* Título */
+.Portada_mascotas .Texto_cover h1 {
+    font-family: "DM Serif Display", serif;
+    font-weight: bold;
+    font-style: normal;
+    font-size: 60px;
+    transition: 0.5s;
+    margin-bottom: 20px;
+}
+
+/* Descripción */
+.Portada_mascotas .Texto_cover p {
+    font-family: "DM Serif Display", serif;
+    font-style: normal;
+    transition: 0.5s;
+    font-size: var(--Texto_parrafo);
+    margin-top: 20px;
+}
+
+/* Estilos para pantallas de tablet */
+@media screen and (max-width: 1200px) {
+
+    .Portada_mascotas .Texto_cover {
+        margin: 140px;
+    }
+
+    .Portada_mascotas .Texto_cover h1 {
+        font-size: 55px; /* Reduce el tamaño del texto principal en tablets */
+    }
+
+    .Portada_mascotas .Texto_cover p {
+        font-size: 20px; /* Ajusta el tamaño del texto en tablets */
+    }
+}
+
+/* Estilos para pantallas de tablet */
+@media screen and (max-width: 1000px) {
+
+    .Portada_mascotas img {
+        object-position: 0.5px center; /* mueve la imagen hacia la derecha */
+    }
+
+    .Contenedor_buscar {
+        height: 45px; /* Ajusta la altura para tablets */
+    }
+    
+    .Buscador {
+        width:350px; /* Ajusta el tamaño del buscador en tablets */
+    }
+
+    .Buscador:hover {
+        width: 450px; /* Tamaño máximo del buscador al hacer hover en tablets */
+    }
+
+    .Portada_mascotas .Texto_cover {
+        margin: 120px;
+        margin-top: 250px;
+    }
+
+    .Portada_mascotas img {
+        filter: brightness(85%);
+    }
+
+    .Portada_mascotas .Texto_cover h1 {
+        font-size: 55px; /* Reduce el tamaño del texto principal en tablets */
+    }
+
+    .Portada_mascotas .Texto_cover p {
+        font-size: 20px; /* Ajusta el tamaño del texto en tablets */
+    }
+}
+
+/* Estilos para pantallas de celular */
+@media screen and (max-width: 600px) {
+    .Contenedor_buscar {
+        height: 40px; /* Ajusta la altura para celulares */
+    }
+
+    .Buscador {
+        width: 300px; /* Ocupa todo el ancho disponible en celulares */
+        padding: 10px; /* Reduce el padding */
+    }
+
+    .Buscador:hover {
+        width: 350px; /* No aumenta el ancho al hacer hover en celulares */
+    }
+
+    .Boton_buscar {
+        font-size: 15px; /* Reduce el tamaño del botón en celulares */
+        padding: 8px 16px; /* Ajusta el padding del botón */
+    }
+
+    .Portada_mascotas .Texto_cover {
+        margin-top: 300px;
+    }
+
+    .Portada_mascotas img {
+        filter: brightness(75%);
+    }
+
+    .Portada_mascotas .Texto_cover h1 {
+        font-size: 50px; /* Reduce el tamaño del texto principal en tablets */
+    }
+
+    .Portada_mascotas .Texto_cover p {
+        font-size: 15px; /* Ajusta el tamaño del texto en tablets */
+    }
+
+}
+
+.Galeria_mascotas {
+    background-color: var(--Color_oscuro);
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column; /* Asegura que los elementos estén apilados verticalmente */
+    align-items: center; /* Centra el contenido horizontalmente */
+    
+}
+
+.Contenedor_mascotas {
+    width: 90%; /* Asegura que el contenedor use el 100% del ancho disponible */
+    margin: 50px 0;
+    border: 3px solid gray; /* Agrega borde al contenedor */
+    border-radius: 10px; /* Bordes redondeados */
+    columns: 5 320px;
+    column-gap: 20px;
+    padding: 20px;
+}
+
+.Contenedor_mascotas p {
+    color: aliceblue;
+}
+
+.Mascota {
+    position: relative;
+    border-radius: 8px;
+    box-shadow: var(--Caja_sombra-principal); /* Sombra ligera */
+    overflow: hidden;
+    color: white;
+    width: 100%; /* Asegura que las tarjetas ocupen el 100% del espacio de la columna */
+    max-height: 800px;
+    transition: transform 0.3s ease-in-out;
+    text-decoration: none;
+    margin-bottom: 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: 0.5s;
+}
+
+.Mascota:hover {
+    border: 2px solid aliceblue;
+    transform: scale(1.1);
+    transform: translateY(-9px);
+    box-shadow: 0px 6px 50px -20px rgba(255, 255, 255, 0.4);
+}
+
+.Mascota img {
+    width: 100%;
+    height: 100%; /* Asegura que la imagen ocupe todo el contenedor */
+    object-fit: cover; /* Hace que la imagen cubra completamente el espacio sin perder proporciones */
+    display: block;
+    transition: transform 0.5s;
+    text-align: center;
+    justify-content: center;
+}
+
+.Descripcion_mascota {
+    width: 100%;
+    background: transparent;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 10px 30px; /* Ajustar padding según preferencia */
+    text-align: center; /* Centrar el texto horizontalmente */
+    display: flex; /* Usar flexbox para centrar verticalmente */
+    flex-direction: column; /* Asegurar que el contenido esté apilado verticalmente */
+    justify-content: center; /* Centrar verticalmente */
+    align-items: center; /* Centrar horizontalmente */
+    transition: all 0.5s;
+    height: 0; /* Asegura que ocupe todo el espacio de la publicacion */
+    color: transparent;
+}
+
+.Mascota:hover .Descripcion_mascota {
+    height: 100%;
+    color: aliceblue;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9)); /* Ajustar opacidad */
+}
+
+.Descripcion_mascota h2 {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    margin: 0; /* Eliminar margen superior e inferior */
+    letter-spacing: 2px;
+}
+
+.Descripcion_mascota p {
+    margin: 5px 0;
+}
+
+/* Estilo para la ventana para informacion de la publicacion */
+.Ventana_informacion {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(32, 32, 45, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 9998;
+}
+
+/* Modal principal */
+.Modal_main {
+    display: flex;
+    background-color: aliceblue;
+    border-radius: 10px;
+    overflow: hidden;
+    width: 70%;
+    height: 70%;
+    transform: scale(0.9);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+/* Clases para hacer visibles */
+.Ventana_informacion.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.Ventana_informacion.visible .Modal_main {
+    transform: scale(1);
+    opacity: 1;
+}
+
+/* Imagen izquierda */
+.Modal_imagen {
+    flex: 1;
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Modal_imagen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Contenido derecho */
+.Modal_contenido {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: relative;
+    margin-left: 10px;
+}
+
+/* Encabezado */
+.Modal_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.Modal_avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.Modal_usuario {
+    font-weight: bold;
+    margin-left: 10px;
+    color: var(--Color_oscuro);
+    flex: 1;
+}
+
+/* Informacion mascota */
+.Modal_mascota_info {
+    margin-top: 20px;
+    padding-right: 10px;
+    max-width: 100%;
+    max-height: 45vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.Modal_mascota_info::-webkit-scrollbar {
+    width: 8px;
+}
+
+.Modal_mascota_info::-webkit-scrollbar-thumb {
+    background-color: rgba(100, 100, 100, 0.4);
+    border-radius: 4px;
+}
+
+.Modal_mascota_info::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(80, 80, 80, 0.6);
+}
+
+.Modal_mascota_info h1 {
+    font-size: 15px;
+    color: var(--Color_oscuro);
+    font-weight: bold;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.Modal_mascota_info p {
+    font-size: 15px;
+    color: var(--Color_oscuro);
+    padding-left: 20px;
+    margin-bottom: 15px;
+}
+
+/* Acciones */
+.Modal_acciones {
+    margin: 10px 0px;
+    display: flex;
+    gap: 20px;
+    color: var(--Color_oscuro);
+}
+
+/* Info inferior */
+.Modal_info {
+    margin-top: auto;
+    font-size: 16px;
+    color: var(--Color_grisoscuro);
+}
+
+.Modal_fecha {
+    font-size: 14px;
+    color: var(--Color_grisapagado);
+}
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 25px;
+    color: var(--Color_oscuro);
+    transition: color 0.3s ease;
+}
+
+@keyframes pop {
+    0% { transform: scale(1); }
+    30% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+}
+
+.btn-icon.active {
+    color: var(--Color_texto_principal);
+}
+
+/* Botón "X" de cerrar modal */
+.Cerrar_ventana {
+    position: absolute;
+    top: 4px;
+    right: 15px;
+    font-size: 28px;
+    color: aliceblue;
+    cursor: pointer;
+    z-index: 10000;
+}
+
+/* Estilos para pantallas tipo tablet */
+@media (max-width: 1800px) {
+
+    .Modal_main {
+        width: 90%;
+    }
+}
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 800px) {
+    .Modal_main {
+        flex-direction: column; /* Imagen arriba, texto abajo */
+        width: 85%;
+        height: auto;
+        max-height: 70%;
+        border-radius: 15px;
+    }
+
+    .Modal_imagen {
+        width: 100%;
+        height: auto;
+        flex: none;
+    }
+
+    .Modal_imagen img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .Modal_header {
+        width: 100%;
+    }
+
+    .Modal_contenido {
+        flex: none;
+        margin-left: 0;
+        width: 100%;
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .Modal_mascota_info {
+        max-height: none;
+        padding-right: 0;
+    }
+
+    .Modal_acciones {
+        justify-content: space-around;
+        width: 100%;
+    }
+
+    .Modal_info {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+.Paginador {
+    margin-top: 20px; /* Espacio entre el contenedor de galería y el paginador */
+    width: 85%; /* Alineación con el contenedor de galería */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px; /* Espacio entre botones y números */
+}
+
+.Elementos_porpagina {
+    display: flex;
+    align-items: center;
+}
+
+.Paginacion button {
+    background-color: white;
+    border: 2px solid transparent;
+    height: 45px;
+    width: 45px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginacion button i {
+    color: var(--Color_texto_principal); /* Color para las flechas */
+}
+
+.Paginacion::before button i {
+    height: 20px;
+    width: 20px;
+}
+
+.Paginacion .activo {
+    background-color: var(--Color_texto_principal);;
+    color: white;
+    border: 2px solid var(--Color_texto_principal);;
+}
+
+.Paginacion div span {
+    background-color: white;
+    border: 2px solid var(--Color_grisapagado);
+    color: var(--Color_texto_principal);
+    padding: 6.5px 13.5px;
+    font-size: 20px;
+    height: 40px;
+    width: 40px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.5s;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginacion div span:hover {
+    background-color: white;
+}
+
+.Paginacion div span.activo {
+    background-color: var(--Color_texto_principal);;
+    color: white;
+    border: 2px solid transparent;
+}
+
+.Paginador .Elementos_pagina {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    gap: 10px;
+}
+
+.Paginador .Elementos_pagina label {
+    font-weight: 500;
+}
+
+.Paginador .Elementos_pagina select {
+    background-color: white;
+    border: 3px solid var(--Color_grisapagado);
+    border-radius: 5px;
+    padding: 8px 12px;
+    font-size: 16px;
+    color: var(--Color_texto_principal);
+    cursor: pointer;
+    transition: all 0.5s ease;
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginador .Elementos_pagina select:hover {
+    border-color: var(--Color_texto_principal);
+}
+
+.Paginador .Elementos_pagina select:focus {
+    outline: none;
+    border-color: var(--Color_texto_principal);
+    box-shadow: var(--Caja_sombra-principal);
+}
+
+.Paginador .Elementos_pagina option {
+    padding: 10px;
+    background-color: white;
+    color: var(--Color_texto_principal);
+}
+
+/* Estilos para pantallas tipo tablet */
+@media (max-width: 1000px) {
+    .Contenedor_galeria {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta el tamaño mínimo de las tarjetas */
+        gap: 30px; /* Reduce la separación entre las tarjetas */
+        padding: 50px;
+        width: 90%; /* Asegura que el contenedor use el 90% del ancho disponible */
+    }
+
+    .Mascota {
+        margin-bottom: 20px; /* Espacio entre las tarjetas */
+    }
+
+    .Paginador {
+        width: 90%; /* Alinea el paginador con el contenedor de galería */
+        flex-direction: column; /* Cambia la orientación a vertical para facilitar el uso en pantallas pequeñas */
+        gap: 20px;
+    }
+
+    .Paginacion {
+        justify-content: center; /* Centra los botones de paginación */
+        gap: 10px; /* Espacio adicional entre los botones */
+    }
+
+    .Elementos_pagina {
+        justify-content: center; /* Centra el selector de elementos por página */
+        margin-bottom: 20px;
+    }
+}
+
+/* Estilos para pantallas tipo celular */
+@media (max-width: 800px) {
+    .Contenedor_galeria {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta las tarjetas para pantallas pequeñas */
+        gap: 20px; /* Reduce la separación entre las tarjetas */
+        padding: 30px;
+        width: 95%; /* Se asegura de usar casi todo el ancho disponible */
+    }
+
+    .Mascota {
+        margin-bottom: 15px; /* Espacio entre las tarjetas */
+    }
+
+    .Descripcion_mascota h2 {
+        font-size: 20px; /* Reduce el tamaño de fuente de los títulos */
+    }
+
+    .Descripcion_mascota p {
+        font-size: 14px; /* Ajusta el tamaño de la descripción para mejor legibilidad */
+    }
+
+    .Paginador {
+        width: 100%; /* Utiliza todo el ancho disponible para el paginador */
+        flex-direction: column; /* Orientación vertical para mejor legibilidad */
+        gap: 15px;
+    }
+
+    .Paginacion {
+        gap: 8px; /* Reduce el espacio entre los botones de paginación */
+    }
+
+    .Paginacion button, .Paginacion div span {
+        height: 35px;
+        width: 35px;
+        font-size: 16px; /* Ajusta el tamaño de los números */
+    }
+
+    .Elementos_pagina {
+        font-size: 14px; /* Ajusta el tamaño de texto para elementos por página */
+        margin-bottom: 20px;
+    }
+
+    .Elementos_pagina select {
+        padding: 6px 10px;
+        font-size: 14px; /* Tamaño reducido para adaptarse a pantallas pequeñas */
+    }
+}
+
+
+/* Estilos para el pie de página */
+footer {
+    background-color: var(--Color_oscuro);
+    /* Fondo oscuro para resaltar el color aliceblue */
+    color: aliceblue;
+    /* Todo el texto en color aliceblue */
+    padding: 80px 20px;
+    text-align: center;
+    /* Centra el contenido de texto */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* Alinea todo verticalmente en el centro */
+    justify-content: center;
+}
+
+.Footer_section {
+    margin: 20px 0;
+    /* Espaciado entre secciones del footer */
+    width: 100%;
+}
+
+.Footer_section-contacto p,
+.Footer_section-contacto h3 {
+    color: aliceblue;
+    /* Asegura que el texto esté en color aliceblue */
+    margin: 10px 0;
+    /* Espaciado vertical entre los textos */
+}
+
+.Footer_content h3 {
+    display: flex;
+    flex-direction: column;
+    /* Coloca los iconos de redes sociales en columna */
+    align-items: center;
+}
+
+.Footer_section-social {
+    display: flex;
+    /* Coloca los iconos de redes sociales en fila */
+    justify-content: center;
+    /* Centra los iconos horizontalmente */
+    margin: 10px 0;
+    /* Espaciado vertical entre iconos y otras secciones */
+}
+
+.Footer_section-social a {
+    color: aliceblue;
+    /* Etiquetas de enlace en color aliceblue */
+    margin: 0 15px;
+    /* Espaciado horizontal entre los iconos (ajusta el valor según sea necesario) */
+}
+
+.Footer_section-contacto a {
+    color: var(--Color_texto_principal);
+    /* Color de los enlaces en aliceblue */
+    text-decoration: none;
+    /* Quita el subrayado de los enlaces */
+    margin: 10px 0;
+    /* Espaciado entre los enlaces */
+}
+
+.Footer_section-links a {
+    color: var(--Color_texto_principal);
+    /* Color de los enlaces en aliceblue */
+    text-decoration: none;
+    /* Quita el subrayado de los enlaces */
+    margin: 10px 0;
+    /* Espaciado entre los enlaces */
+}
+
+.Footer_section-social i {
+    color: aliceblue;
+    /* Iconos en color aliceblue */
+    font-size: 24px;
+    /* Ajusta el tamaño de los iconos */
+    margin: 10px 0;
+    /* Espaciado entre los iconos */
+    transition: 0.3s ease;
+    /* Añade una transición suave en el hover */
+}
+
+.Footer_section-social i:hover {
+    color: #f0f8ff;
+    /* Color ligeramente más claro al hacer hover */
+    transform: scale(1.1);
+    /* Efecto de escala al pasar el ratón por encima */
+}
+
+/* Responsivo para pantallas pequeñas */
+@media screen and (max-width: 800px) {
+    footer {
+        padding: 40px 10px;
+        font-size: 14px;
+    }
+
+    .Footer_section-social i {
+        font-size: 20px;
+        /* Iconos ligeramente más pequeños en pantallas pequeñas */
+    }
+}

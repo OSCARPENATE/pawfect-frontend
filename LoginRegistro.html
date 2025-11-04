@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="Access/LoginRegistroStyle.css">
+        <!--Iconos-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Pata-->
+        <link rel="icon" href="Imagens/pata.png" type="image/png">
+
+        <title>Pawfect</title>
+    </head>
+
+    <body>
+        <main>
+            <a href="index.html" class="Boton_regresar">
+                <i class="fa-solid fa-arrow-left"></i>
+                Regresar
+            </a>
+            <div class="Contenedor">
+                <!--Atras del formulario-->
+                <div class="Caja_trasera">
+                    <!--Atras del formulario login-->
+                    <div class="Caja_trasera-login">
+                        <h3>¿Ya tienes una cuenta?</h3>
+                        <p>Inicia sesión para entrar en la página.</p>
+                        <button id="Boton_secundario-login" type="button">Iniciar Sesión</button>
+                    </div>
+
+                    <!--Atras del formulario registro-->
+                    <div class="Caja_trasera-registro">
+                        <h3>¿Aún no tiene una cuenta?</h3>
+                        <p>Regístrate para que puedas iniciar sesión.</p>
+                        <button id="Boton_secundario-registro" type="button">Registrarse</button>
+                    </div>
+                </div>
+
+                <!--formularios-->
+                <div class="Contenedor_login-registro">
+                    <!--formularios de login-->
+                    <form id="formLogin" class="Formulario_login" novalidate>
+
+                        <h1>INICIAR SESION</h1>
+                        <hr>
+
+                        <i class="fa-solid fa-house"></i>
+                        <label>Usuario</label>
+                        <input type="text" name="Usuario" placeholder="Nombre de usuario" required>
+                        <span class="error-message" id="error-login-usuario"></span><br>
+
+                        <i class="fa-solid fa-lock"></i>
+                        <label>Clave</label>
+                        <input type="password" name="Clave" placeholder="Clave" required>
+                        <span class="error-message" id="error-login-clave"></span><br>
+                        <hr>
+
+                        <button type="submit">Iniciar Sesión</button>
+                    </form>
+
+                    <!--formularios de Registro-->
+                    <form id="formRegistro" class="Formulario_registro" novalidate>
+
+                        <h1>REGISTRARSE</h1>
+                        <hr>
+
+                        <i class="fa-solid fa-user"></i>
+                        <label>Nombre *</label> 
+                        <input type="text" name="Nombre" placeholder="Nombres" required>
+                        <span class="error-message" id="error-registro-nombre"></span><br>
+                        
+                        <i class="fa-solid fa-house"></i>
+                        <label>Usuario *</label>
+                        <input type="text" name="Usuario" placeholder="Usuario" required>
+                        <span class="error-message" id="error-registro-usuario"></span><br>
+                        
+                        <i class="fa-solid fa-envelope"></i>
+                        <label>Correo electrónico *</label>
+                        <input type="email" name="Correo" placeholder="Correo" required>
+                        <span class="error-message" id="error-registro-correo"></span><br>
+                        
+                        <i class="fa-solid fa-unlock"></i>
+                        <label>Contraseña *</label>
+                        <input type="password" name="Clave" placeholder="Contraseña" required>
+                        <span class="error-message" id="error-registro-clave"></span><br>
+                        
+                        <i class="fa-solid fa-unlock"></i>
+                        <label>Repetir contraseña *</label>
+                        <input type="password" name="RepetirClave" placeholder="Contraseña" required>
+                        <span class="error-message" id="error-registro-repetirclave"></span><br>
+                        
+                        <hr>
+                        <button type="submit">Crear cuenta</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <script src="Scripts/LoginScript.js"></script>
+        <script src="Scripts/ValidacionLoginRegistro.js"></script>
+
+        <script>
+            document.getElementById("formRegistro").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+                const form = e.target;
+                const nombre = form.Nombre.value.trim();
+                const usuario = form.Usuario.value.trim();
+                const correo = form.Correo.value.trim();
+                const clave = form.Clave.value.trim();
+                const repetirClave = form.RepetirClave.value.trim();
+
+                try {
+                    const response = await fetch("https://pawfect-backend-hkwt.onrender.com/api/users/register", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nombre, usuario, correo, clave }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        console.log("Respuesta del servidor:", data);
+                        alert("✅ Usuario registrado correctamente");
+                    form.reset();
+                    } else {
+                        alert("⚠️ " + data.mensaje);
+                    }
+                } catch (error) {
+                    console.log("Respuesta del servidor:", data);
+                    console.error("Error al registrar:", error);
+                    alert("❌ Ocurrió un error al registrar el usuario");
+                }
+            });
+        </script>
+
+        <script>
+            document.getElementById("formLogin").addEventListener("submit", async (e) => {
+            e.preventDefault();
+
+                const form = e.target;
+                const usuario = form.Usuario.value.trim();
+                const clave = form.Clave.value.trim();
+
+                try {
+                    const response = await fetch("https://pawfect-backend-hkwt.onrender.com/api/users/login", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ usuario, clave }),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        alert("✅ Bienvenido " + data.usuario.nombre);
+                        localStorage.setItem("usuario", JSON.stringify(data.usuario));
+                        window.location.href = "index.html";
+                        } else {
+                        alert("⚠️ " + data.mensaje);
+                        }
+                } catch (error) {
+                    console.error("Error al iniciar sesión:", error);
+                    alert("❌ Ocurrió un error al iniciar sesión");
+                }
+            });
+        </script>
+
+        <script>
+            // Función para ocultar el mensaje
+            function ocultarMensaje() {
+                const mensaje = document.getElementById('mensaje');
+                if (mensaje) {
+                    mensaje.style.opacity = '0'; // Cambia la opacidad a 0
+                    setTimeout(() => {
+                        mensaje.style.display = 'none'; // Oculta el elemento después de 1000 ms
+                    }, 1000); // Espera el mismo tiempo que la transición
+                }
+            }
+
+            // Desaparecer el mensaje después de 10 segundos
+            setTimeout(ocultarMensaje, 4000);
+        </script>
+
+    </body>
+
+</html>

@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!--CSS-->
+        <link rel="stylesheet" href="Access/PerfilStyle.css">
+        <!--Iconos-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+            integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <!--Pata-->
+        <link rel="icon" href="Imagens/pata.png" type="image/png">
+
+        <title>Pawfect</title>
+    </head>
+
+    <body>
+
+        <!--Header - Menu-->
+        <header>
+            <div class="Contenedor_header">
+
+                <div class="Logo">
+                    <a href="index.html">
+                        <img src="Imagens/name.png" alt="">
+                    </a>
+                </div>
+
+                <div class="Menu">
+                    <nav>
+                        <ul>
+                            <li><a href="#">Nosotros</a></li>
+                            <li><a href="#">Servicios</a></li>
+                            <li><a href="Pets.html">Mascotas</a></li>
+                            <li><a href="Perfil.html">Perfil</a></li>
+                        </ul>
+                    </nav>
+
+                    <a href="LoginRegistro.html" class="Boton_principal"><span>INGRESAR</span></a>
+
+                    <script src="Scripts/BotonPrincipal.js"></script>
+
+                    <div class="SocialMedia">
+                        <a href="#">
+                            <img src="Imagens/facebook.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="Imagens/x.png" alt="">
+                        </a>
+                        <a href="#">
+                            <img src="Imagens/instagram.png" alt="">
+                        </a>
+                    </div>
+                        
+                    <div class="menu-toggle">
+                        <i class="fas fa-bars"></i> <!-- Icono de hamburguesa de Font Awesome -->
+                    </div>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            <!-- Ventana error no ha iniciado sesion -->
+            <div class="Ventana_sin_sesion" id="Ventana_sin_sesion" style="display: none;">
+                <div class="Modal_sin_sesion">
+                    <h2>No has iniciado sesión</h2>
+                    <a href="LoginRegistro.html" class="Boton_redireccion_ingreso">INGRESAR</a>
+                </div>
+            </div>
+
+            <script>
+                // Scripts/VerificarSesion.js
+                document.addEventListener("DOMContentLoaded", () => {
+                const ventanaSinSesion = document.getElementById("Ventana_sin_sesion");
+
+                // Verificar si hay usuario en el localStorage
+                const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+                if (!usuario) {
+                    // ❌ No hay sesión activa, mostrar ventana
+                    ventanaSinSesion.style.display = "flex";
+
+                    // Evita que el usuario interactúe con el resto de la página
+                    document.body.style.overflow = "hidden";
+                } else {
+                    // ✅ Hay sesión, ocultar ventana
+                    ventanaSinSesion.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+                });
+            </script>
+
+            <!--Perfil del usuario-->
+            <div class="Contenedor_perfil-usuario">
+
+                <div class="Perfil_usuario">
+                    <div class="Perfil_usuario-portada" id="portada">
+                        
+                        <div class="Perfil_usuario-avatar">
+                            <img id="avatar" src="Imagens/Sinperfil.jpg" alt="Imagen_avatar">
+
+                            <!-- Botón para cargar avatar -->
+                            <button type="button" class="Boton_cargar-avatar ocultar" id="Boton_avatar"><i class="icono fas fa-image"></i></button>
+                            <input type="file" id="inputAvatar" accept="image/*" style="display:none;">
+                            <button type="button" class="Boton_reset-avatar ocultar" id="Reset_avatar"><i class="fas fa-times"></i></button>
+                        </div>
+
+                        <!-- Botón para cargar portada -->
+                        <button type="button" class="Boton_portada ocultar" id="Boton_portada">Cambiar fondo</button>
+                        <input type="file" id="inputPortada" accept="image/*" style="display:none;">
+                        <button type="button" class="Boton_reset-portada ocultar" id="Reset_portada"><i class="fas fa-times"></i></button>
+                    </div>
+                </div>
+
+
+                <div class="Perfil_usuario-body">
+
+                    <!-- Mostrar el nombre del usuario en el título -->
+                    <div class="Perfil_usuario-bio">
+                        <div class="Titulo_usuario">
+                            <h2 id="nombreUsuario">Tu nombre...</h2>
+                        </div>
+                        <p class="Descripcion_usuario">Aquí puedes colocar una descripción para tu perfil, donde podrás
+                            compartir un poco sobre ti, y como puedes ayudar a cambiar vidas.
+                        </p>
+                    </div>
+
+                    <script>
+                        // Scripts/MostrarNombreUsuario.js
+                        document.addEventListener("DOMContentLoaded", () => {
+                        const nombreElemento = document.getElementById("nombreUsuario");
+
+                        // Obtener usuario desde localStorage
+                        const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+                        if (usuario && usuario.nombre) {
+                            nombreElemento.textContent = usuario.nombre;
+                        } else {
+                            console.warn("No hay sesión activa para mostrar el nombre");
+                        }
+                        });
+                    </script>
+
+                    <!-- El resto del contenido del perfil -->
+                    <div class="Perfil_usuario-info">
+                        <ul class="Lista_datos">
+                            <li><i class="icono fas fa-envelope"></i> Correo:</li>
+                            <li><i class="icono fas fa-briefcase"></i> Perfil:</li>
+                        </ul>
+                        <ul class="Lista_datos">
+                            <li><i class="icono fas fa-map-marker-alt"></i> Ubicación:</li>
+                            <li><i class="icono fas fa-phone-alt"></i>Teléfono:</li>
+                        </ul>
+                    </div>
+
+                    <!-- Botón para desplegar el formulario -->
+                    <div class="Boton_centro">
+                        <a href="#Formulario_actualizar" class="Boton_actualizar" id="Boton_actualizar">Actualizar</a>
+                    </div>
+
+                    <!-- Formulario php1 oculto inicialmente -->
+                    <div id="Formulario_actualizar" style="display:none;">
+                        <form novalidate>
+                            <label><i class="icono fas fa-envelope"></i> Correo:</label>
+                            <input type="email" name="Correo" placeholder="Correo" required>
+                            <span id="error-actualizar-correo" class="error-message"></span><br>
+
+                            <label><i class="icono fas fa-phone-alt"></i> Teléfono:</label>
+                            <input type="tel" name="Telefono" placeholder="Telefono" required>
+                            <span id="error-actualizar-telefono" class="error-message"></span><br>
+
+                            <label><i class="icono fas fa-briefcase"></i> Perfil:</label>
+                            <select name="Perfil_Opciones" required>
+                                <option value="Fundacion">Fundación</option>
+                                <option value="Recatador">Recatador</option>
+                                <option value="Sin_elegir" selected>Sin elegir</option>
+                            </select>
+                            <span id="error-actualizar-perfil" class="error-message"></span><br>
+
+                            <label><i class="icono fas fa-map-marker-alt"></i> País:</label>
+                            <input type="text" name="Pais" placeholder="Pais" required>
+                            <span id="error-actualizar-Pais" class="error-message"></span><br>
+
+                            <label><i class="icono fas fa-map-marker-alt"></i> Ciudad:</label>
+                            <input type="text" name="Ciudad" placeholder="Ciudad" required>
+                            <span id="error-actualizar-Ciudad" class="error-message"></span><br>
+
+                            <div class="Boton_formulario">
+                                <button type="submit" class="Guardar">Guardar</button>
+                                <button type="button" class="Cerrar">Cancelar</button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <!-- Script -->
+                <script type="module">
+                    // Importar Firebase SDK
+                    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js";
+                    import { getStorage, ref, uploadString, getDownloadURL } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-storage.js";
+                    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js";
+                    // Configura tu proyecto Firebase
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyDoWabKbkgpWuyc6hCG_VltoAqRz7sP1Iw",
+                        authDomain: "repositorio-pawfect.firebaseapp.com",
+                        projectId: "repositorio-pawfect",
+                        storageBucket: "repositorio-pawfect.firebasestorage.app",
+                        messagingSenderId: "4468659469",
+                        appId: "1:4468659469:web:eba9fe882059307051cc44",
+                        measurementId: "G-EE8NL4KS1F"
+                    };
+
+                    // Inicializar Firebase
+                    const app = initializeApp(firebaseConfig);
+                    const storage = getStorage(app);
+                    const db = getFirestore(app);
+
+                    // Función para subir imagen a Firebase Storage
+                    async function uploadImage(base64Image, folder, userId) {
+                        const imageRef = ref(storage, `${folder}/${userId}_${Date.now()}.jpg`);
+                        await uploadString(imageRef, base64Image.split(',')[1], 'base64', { contentType: 'image/jpeg' });
+                        return await getDownloadURL(imageRef);
+                    }
+
+                    // Guardar datos del usuario
+                    document.querySelector('.Guardar').addEventListener('click', async (event) => {
+                        event.preventDefault();
+
+                        const usuario = JSON.parse(localStorage.getItem('usuario'));
+                        if (!usuario || !usuario.usuario) {
+                            alert("Debes iniciar sesión primero.");
+                            return;
+                        }
+
+                        // Datos del formulario
+                        const correo = document.querySelector('input[name="Correo"]').value;
+                        const telefono = document.querySelector('input[name="Telefono"]').value;
+                        const perfil = document.querySelector('select[name="Perfil_Opciones"]').value;
+                        const pais = document.querySelector('input[name="Pais"]').value;
+                        const ciudad = document.querySelector('input[name="Ciudad"]').value;
+
+                        // Obtener imágenes actuales
+                        const avatarImg = document.getElementById('avatar').src;
+                        const portadaImg = document.getElementById('portada').style.backgroundImage;
+                        const portadaBase64 = portadaImg ? portadaImg.slice(5, -2) : null; // elimina 'url("...")'
+
+                        try {
+                            // Subir imágenes a Firebase Storage (si son nuevas)
+                            const avatarUrl = avatarImg.startsWith('data:image')
+                                ? await uploadImage(avatarImg, 'avatars', usuario.usuario)
+                                : avatarImg;
+
+                            const portadaUrl = portadaBase64 && portadaBase64.startsWith('data:image')
+                                ? await uploadImage(portadaBase64, 'portadas', usuario.usuario)
+                                : portadaBase64;
+
+                            // ✅ Hacer fetch a tu backend para guardar las URLs en Mongo
+                            const response = await fetch("https://pawfect-backend-hkwt.onrender.com/api/users/update-images", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                },
+                                body: JSON.stringify({
+                                    usuario: usuario.usuario,
+                                    avatarUrl,
+                                    portadaUrl,
+                                    correo,
+                                    telefono,
+                                    perfil,
+                                    pais,
+                                    ciudad,
+                                }),
+                            });
+
+                            const data = await response.json();
+
+                            if (!response.ok) {
+                                throw new Error(data.mensaje || "Error al actualizar imágenes en MongoDB");
+                            }
+
+                            console.log("✅ URLs guardadas en MongoDB:", data.usuario);
+
+                            alert('Datos guardados correctamente ✅');
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1500);
+                                
+                        } catch (error) {
+                            console.error('Error al guardar:', error);
+                            alert('Error al guardar los datos ❌');
+                        }
+
+                    });
+                    
+                    // 🔹 Botón de publicar en la previsualización
+                    const publicarBtn = document.getElementById('Publicar_imagen');
+                    publicarBtn.addEventListener('click', async () => {
+                        const usuario = JSON.parse(localStorage.getItem('usuario'))?.usuario;
+                        if (!usuario) {
+                            alert("Debes iniciar sesión primero.");
+                            return;
+                        }
+
+                        const imagenPrevia = document.getElementById('Imagen_previa').src;
+                        const titulo = document.getElementById('Titulo_previa').textContent;
+                        const descripcion = document.getElementById('Descripcion_previa').textContent;
+
+                        if (!imagenPrevia || imagenPrevia.includes('Sinimagen.jpeg')) {
+                            alert("No hay imagen seleccionada.");
+                            return;
+                        }
+
+                        try {
+                            // 1️⃣ Subir imagen a Firebase Storage en la carpeta "publicaciones"
+                            const imagenUrl = await uploadImage(imagenPrevia, 'publicaciones', usuario);
+                            console.log("✅ Imagen subida a Storage:", imagenUrl);
+
+                            // 2️⃣ Enviar datos al backend para guardar en MongoDB
+                            const response = await fetch("https://pawfect-backend-hkwt.onrender.com/api/users/publicar", {
+                                method: "POST",
+                                headers: { "Content-Type": "application/json" },
+                                body: JSON.stringify({
+                                    usuario,
+                                    imagenUrl,
+                                    titulo,
+                                    descripcion
+                                })
+                            });
+
+                            if (!response.ok) {
+                                const text = await response.text(); // para manejar errores no JSON
+                                throw new Error(text);
+                            }
+
+                            const data = await response.json();
+                            console.log("✅ Publicación guardada en MongoDB:", data.publicacion);
+                            alert("¡Publicación creada correctamente!");
+
+                            // 3️⃣ Cerrar popup y reiniciar editor
+                            document.getElementById("Popup_previsualizacion").style.display = "none";
+
+                            // 4️⃣ 🔁 Recargar página después de 1.5s
+                            setTimeout(() => {
+                                location.reload();
+                            }, 1500);
+
+                        } catch (error) {
+                            console.error("Error al publicar:", error);
+                            alert("Error al publicar: " + error.message);
+                        }
+                    });
+                </script>
+
+                <script>
+                    window.addEventListener("DOMContentLoaded", async () => {
+                        const usuario = JSON.parse(localStorage.getItem("usuario"));
+                        if (!usuario || !usuario.usuario) {
+                        return;
+                        }
+
+                        try {
+                        const url = `https://pawfect-backend-hkwt.onrender.com/api/users/get-user/${usuario.usuario}`;
+
+                        const response = await fetch(url);
+
+                        if (!response.ok) throw new Error(`No se pudo obtener la información del usuario. Status: ${response.status}`);
+
+                        const userData = await response.json();
+
+                        // ✅ Aquí cambiamos el acceso:
+                        const datosUsuario = userData.usuario || userData; // fallback por si el backend cambia formato
+
+                        // ✅ Avatar
+                        const avatarElement = document.getElementById("avatar");
+                        if (datosUsuario.avatarUrl) {
+                            avatarElement.src = datosUsuario.avatarUrl;
+                            console.log("🖼️ Avatar cargado desde URL:", datosUsuario.avatarUrl);
+                        } else {
+                            console.warn("⚠️ El usuario no tiene avatar guardado en MongoDB.");
+                        }
+
+                        // ✅ Portada
+                        const portadaElement = document.getElementById("portada");
+                        if (datosUsuario.portadaUrl) {
+                            portadaElement.style.backgroundImage = `url(${datosUsuario.portadaUrl})`;
+                            portadaElement.style.backgroundSize = "cover";
+                            portadaElement.style.backgroundPosition = "center";
+                            console.log("🏞️ Portada cargada desde URL:", datosUsuario.portadaUrl);
+                        } else {
+                            console.warn("⚠️ El usuario no tiene portada guardada en MongoDB.");
+                        }
+
+                        } catch (error) {
+                        console.error("❌ Error al cargar los datos del usuario:", error);
+                        }
+                    });
+                </script>
+
+
+                <script src="Scripts/FormularioPerfil.js"></script>
+                <script src="Scripts/CargaImagenesPerfil.js"></script>
+                <script src="Scripts/ValidacionPerfil.js"></script>
+
+            </div>
+
+            <section class="Publicaciones">
+
+                <!-- Publicaciones del perfil -->
+                <div class="Contenedor_publicaciones" id="contenedorPublicaciones">
+                    <div class="Mascota" id="Mascota">
+                        <img src="Imagens/Sinimagen.jpeg" alt="Mascota 1">
+                        <div class="Descripcion_mascota">
+                            <h2></h2>
+                        </div>
+                    </div>
+
+                    <script type="module">
+                        document.addEventListener("DOMContentLoaded", async () => {
+                            const contenedor = document.getElementById("contenedorPublicaciones");
+                            const usuario = JSON.parse(localStorage.getItem("usuario"));
+
+                            if (!usuario || !usuario.usuario) {
+                                contenedor.innerHTML = "<p>Debes iniciar sesión para ver tus publicaciones.</p>";
+                                return;
+                            }
+
+                            try {
+                                // 🔹 Obtener publicaciones del usuario desde tu backend
+                                const response = await fetch(`https://pawfect-backend-hkwt.onrender.com/api/users/publicaciones/${usuario.usuario}`);
+                                if (!response.ok) throw new Error("Error al obtener publicaciones");
+
+                                const data = await response.json();
+                                const publicaciones = data.publicaciones || [];
+
+                                // 🔹 Si no hay publicaciones, mostrar mensaje
+                                if (publicaciones.length === 0) {
+                                    contenedor.innerHTML = "<p>No tienes publicaciones aún.</p>";
+                                    return;
+                                }
+
+                                // 🔹 Limpiar contenedor antes de renderizar
+                                contenedor.innerHTML = "";
+
+                                // 🔹 Crear elementos dinámicamente
+                                publicaciones.forEach(pub => {
+                                    const divMascota = document.createElement("div");
+                                    divMascota.classList.add("Mascota");
+
+                                    divMascota.innerHTML = `
+                                        <img src="${pub.imagenUrl}" alt="Publicación de ${usuario.usuario}">
+                                        <div class="Descripcion_mascota">
+                                            <h2>${pub.titulo}</h2>
+                                        </div>
+                                    `;
+
+                                    contenedor.appendChild(divMascota);
+                                });
+
+                            } catch (error) {
+                                console.error("Error al cargar publicaciones:", error);
+                                contenedor.innerHTML = "<p>Error al cargar publicaciones.</p>";
+                            }
+                        });
+                    </script>
+                </div>
+                
+                <!-- Boton para publicar -->
+                <div class="Agregar_publicacion">
+                    <a href="#Ventana_publicar" class="Boton_agregar" id="Boton_agregar"><i class="icono fas fa-plus"></i></a>
+                </div>
+
+                <!-- Ventana informacion -->
+                <div class="Ventana_informacion" id="Ventana_informacion">
+                    <!-- Botón de cerrar -->
+                    <span class="Cerrar_ventana" id="Cerrar_informacion"><i class="fas fa-times"></i></span> <!-- Botón para cerrar -->
+                    <div class="Modal_main_informacion">
+                        <!-- Imagen -->
+                        <div class="Modal_imagen">
+                            <img src="Imagens/Sinimagen.jpeg" alt="Mascota">
+                        </div>
+
+                        <!-- Contenido lateral -->
+                        <div class="Modal_contenido">
+                            <div class="Modal_header">
+                                <img src="Imagens/Sinperfil.jpg" alt="User" class="Modal_avatar">
+                                <span class="Modal_usuario">Nombre de usuario</span>
+                                <button class="btn-icon"><i class="far fa-flag"></i></span>
+                            </div>
+
+                            <div class="Modal_mascota_info">
+
+                                <div class="Modal_nombre_mascota">
+                                    <h1>Nombre:</h1>
+                                    <p>Chispas</p>
+                                </div>
+                                <div class="Modal_descripcion">
+                                    <h1>Descripcion:</h1>
+                                    <p>🐶 Qué tal estos gordasdasdalsndoainfoiasfouaibdiusdapksd´paksdojaosidaiosdnaiosdjpasodjaposdaoisndaiosdoaisjdaos
+                                        saodisjodaijsiodaoisvmaismvabdsiuadosdpoasdpoaksdpoaksdasdasdasda
+                                        os hermosos 💕 haciendo familias felicesasdasdasdasdasdasdauygfbieij 🐾</p>
+                                </div>
+
+                            </div>
+
+                            <div class="Modal_acciones">
+                                <button class="btn-icon"><i class="far fa-heart"></i></button>
+                                <button class="btn-icon"><i class="far fa-comment"></i></button>
+                                <button class="btn-icon"><i class="far fa-envelope"></i></button>
+                            </div>
+                            <script>
+                                document.addEventListener("DOMContentLoaded", () => {
+                                    activarAnimacionBotones(".btn-icon"); // Llama a la función para todos los botones con esa clase
+                                });
+                                function activarAnimacionBotones(selector) {
+                                    const botones = document.querySelectorAll(selector);
+
+                                    botones.forEach(boton => {
+                                        boton.addEventListener("click", () => {
+                                            const icono = boton.querySelector("i");
+
+                                            // Reiniciar animación si ya se ejecutó
+                                            boton.style.animation = "none";
+                                            boton.offsetHeight; // Forzar reflujo
+                                            boton.style.animation = "pop 0.3s ease";
+
+                                            // Alternar entre icono lleno y contorno
+                                            if (boton.classList.contains("active")) {
+                                                boton.classList.remove("active");
+                                                icono.classList.remove("fas");
+                                                icono.classList.add("far");
+                                            } else {
+                                                boton.classList.add("active");
+                                                icono.classList.remove("far");
+                                                icono.classList.add("fas");
+                                            }
+                                        });
+                                    });
+                                }
+                            </script>
+
+                            <div class="Modal_info">
+                                <p><strong>199 Me gusta</strong></p>
+                                <p class="Modal_fecha">8 de noviembre de 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <script src="Scripts/VentanaInformacion.js"></script>
+
+                <!-- Ventana_publicar -->
+                <div class="Ventana_publicar" id="Ventana_publicar" style="display: none;">
+                    <!-- Contenedor con el contenido de la publicación -->
+                    <div class="Contenedor_publicar disable" id="Contenedor_publicar" style="display: none;">
+                        <span class="Cerrar_ventana" id="Cerrar_publicar"><i class="fas fa-times"></i></span> <!-- Botón para cerrar -->
+                        <h2>
+                            Imagen Editor
+                        </h2>
+                        <div class="wrapper">
+                            <div class="Editor_panel">
+                                <div class="Filtro">
+                                    <Label class="Titulo_filtro">Filtros</Label>
+                                    <div class="Opciones">
+                                        <button id="Brightness" class="active">Brillo</button>
+                                        <button id="Saturation">Saturacion</button>
+                                        <button id="Inversion">Negativo</button>
+                                        <button id="Grayscale">Grayscale</button>
+                                    </div>
+                                    <div class="Slider">
+                                        <div class="Filtro_info">
+                                            <p class="Nombre">Brillo</p>
+                                            <p class="Valor">100%</p>
+                                        </div>
+                                        <input type="range" value="100" min="0" max="200">
+                                    </div>
+                                </div>
+                                <div class="Rotacion">
+                                    <Label class="Titulo_filtro">Rotacion</Label>
+                                    <div class="Opciones">
+                                        <button id="left"><i class="fas fa-rotate-left"></i></button>
+                                        <button id="right"><i class="fas fa-rotate-right"></i></button>
+                                        <button id="horizontal"><i class="bx bx-reflect-vertical"></i></button>
+                                        <button id="vertical"><i class="bx bx-reflect-horizontal"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Preview_imagen">
+                                <img src="Imagens/Sinimagen.jpeg" alt="Preview">
+                            </div>
+                        </div>
+                        <div class="Controles">
+                            <button class="Reset_filtro">Reiniciar Filtros</button>
+                            <div class="row">
+                                <input type="file" class="Archivo_input" accept="imagen/*" hidden>
+                                <button class="Cargar_imagen">Cargar Imagen</button>
+                                <button class="Continuar">Continuar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="Popup_confirmacion" id="Popup_confirmacion" style="display: none;">
+                        <div class="Popup_contenido">
+                            <p>¿Desea cerrar la ventana? Los cambios en la imagen se perderán.</p>
+                            <button id="Boton_confirmar" class="Boton_confirmar">Sí</button>
+                            <button id="Boton_cancelar" class="Boton_cancelar">No</button>
+                        </div>
+                    </div>
+
+                    <!-- Nuevo contenedor para agregar título y descripción -->
+                    <div class="Contenedor_detalles" id="Contenedor_detalles" style="display: none;">
+                        <span class="Cerrar_ventana" id="Cerrar_detalles"><i class="fas fa-times"></i></span>
+                        <h2>
+                            Detalles de la Imagen
+                        </h2>
+                        <div class="Detalles_form">
+                            <label for="Titulo_imagen">Nombre:</label>
+                            <input type="text" id="Titulo_imagen" placeholder="Ingrese un título para la imagen">
+
+                            <label for="Descripcion_imagen">Descripción:</label>
+                            <textarea id="Descripcion_imagen" placeholder="Ingrese una descripción para la imagen"></textarea>
+
+                            <div class="Detalles_controles">
+                                <button class="Regresar_publicar" id="Regresar_publicar">Regresar</button>
+                                <button class="Finalizar_publicacion" id="Finalizar_publicacion">Finalizar Publicación</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Nuevo popup para la vista previa, título y descripción -->
+                    <div class="Popup_previsualizacion" id="Popup_previsualizacion" style="display: none;">
+                        <div class="Popup_contenido">
+                            <h2>
+                                Previsualización
+                            </h2>
+                            <div class="Vista_previa">
+                                <img id="Imagen_previa" src="Imagens/Sinimagen.jpeg" alt="Previsualización">
+                                <h3 id="Titulo_previa">Título de la Imagen</h3>
+                                <p id="Descripcion_previa">Descripción de la imagen</p>
+                            </div>
+                            <div class="Controles_previsualizacion">
+                                <button class="Cancelar_publicacion" id="Cancelar_publicacion">Cancelar</button>
+                                <button class="Publicar_imagen" id="Publicar_imagen">Publicar</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <script src="Scripts/FinalizarPublicacion.js"></script>
+                <script src="Scripts/VentanaPublicar.js"></script>
+                <script src="Scripts/EditorObras.js"></script>
+                
+                <div class="Paginador">
+                    <!-- Selector para elementos por página -->
+                    <div class="Elementos_pagina">
+                        <label for="Elementos_porpagina">Elementos por página: </label>
+                        <select id="Elementos_porpagina" onchange="cambiarElementosPorPagina()">
+                            <option value="3">3</option>
+                            <option value="6" selected>6</option> <!-- valor predeterminado -->
+                            <option value="9">9</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+
+                    <!-- Paginación -->
+                    <div class="Paginacion">
+                        <button class="prev" onclick="paginaAnterior()" id="btn-prev" style="display: none;">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div id="Numeros_pagina"></div>
+                        <button class="next" onclick="paginaSiguiente()" id="btn-next" style="display: none;">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+            </section>
+
+            <!--Pie de pagina-->
+            <footer>
+                <div class="Footer_content">
+                    <!-- Sección de contacto -->
+                    <div class="Footer_section-contacto">
+                        <h3>Contacto</h3>
+                        <p>Email: <a href="mailto:info@example.com">info@example.com</a></p>
+                        <p>Teléfono: <a href="tel:+1234567890">+1 234 567 890</a></p>
+                    </div>
+
+                    <!-- Sección de redes sociales -->
+                    <h3>Síguenos</h3>
+                    <div class="Footer_section-social">
+                        <a href="https://www.facebook.com"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.x.com"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+
+                    <!-- Sección de enlaces importantes -->
+                    <div class="Footer_section-links">
+                        <h3>Enlaces útiles</h3>
+                        <a href="#">Sobre nosotros</a> |
+                        <a href="#">Política de privacidad</a> |
+                        <a href="#">Términos y condiciones</a>
+                    </div>
+                </div>
+
+                <!-- Sección de derechos de autor -->
+                <div class="Footer_boton">
+                    <p>&copy; 2024 Nombre de tu página web. Todos los derechos reservados.</p>
+                </div>
+            </footer>
+        </main>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const mobileMenu = document.querySelector('.menu-toggle');
+                const navList = document.querySelector('.Menu nav ul');
+
+                if (mobileMenu && navList) {
+                    mobileMenu.addEventListener('click', () => {
+                        navList.classList.toggle('active'); // Alterna la clase 'active' en el menú
+
+                        // Maneja la transición del menú
+                        if (navList.classList.contains('active')) {
+                            navList.style.maxHeight = navList.scrollHeight + "px"; // Establece la altura máxima al contenido
+                        } else {
+                            navList.style.maxHeight = "50%"; // Restaura la altura a 0
+                        }
+                    });
+                }
+            });
+        </script>
+        
+        <script src="Scripts/Paginador.js"></script>
+
+    </body>
+
+</html>
